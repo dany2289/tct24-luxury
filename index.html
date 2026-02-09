@@ -156,7 +156,7 @@
             FR: {
                 nav: { call: "Appeler", division: "Luxury Division" },
                 slides: [
-                    { title: "L'excellence en movimento", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division garantit que chaque pièce arrive à destination exactement come elle a été conçue : parfaite." },
+                    { title: "L'excellence en movimento", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division garantit que chaque pièce arrive à destination esattamente come elle a été conçue : parfaite." },
                     { title: "Notre vision", subtitle: "GARDIENS DE LA BEAUTÉ", content: "Le design italiano est una opera d'arte. Il mérite un voyage impeccabile. TCT24 Luxury Division garantit la perfection." },
                     { title: "Transporter vs protéger", subtitle: "L'EXCELLENCE DANS LES DÉTAILS", content: "Nous ne partons che si la marchandise est sécurisée à 100%. Ogni sangle, ogni protection, ogni millimètre est calculé pour l'intégrité de la valore qui nous est confiée.", labels: ["ÉTAT RÉCEPTION CHARGEMENT", "MÉTHODE TCT24 LUXURY"] },
                     { title: "Corfou : étude de cas", subtitle: "SERVICE CLÉS EN MAIN", content: "Nous gérons ogni étape con precision : livraison, déchargement, positionnement, déballage et élimination complète des emballages.", labels: ["Soin du dettaglio", "Placement final"] },
@@ -184,8 +184,19 @@
         };
 
         const App = () => {
+            // FUNZIONE PER IL RICONOSCIMENTO AUTOMATICO DELLA LINGUA
+            const getInitialLanguage = () => {
+                try {
+                    const browserLang = (navigator.language || navigator.userLanguage).split('-')[0].toUpperCase();
+                    const supported = ['IT', 'PL', 'EN', 'DE', 'FR', 'ES'];
+                    return supported.includes(browserLang) ? browserLang : 'IT';
+                } catch (e) {
+                    return 'IT';
+                }
+            };
+
             const [currentSlide, setCurrentSlide] = useState(0);
-            const [lang, setLang] = useState('IT');
+            const [lang, setLang] = useState(getInitialLanguage());
             const [isLangOpen, setIsLangOpen] = useState(false);
             
             const [heroIndex, setHeroIndex] = useState(0);
