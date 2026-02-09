@@ -141,7 +141,7 @@
                 slides: [
                     { title: "Exzellenz in Bewegung", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division garantiert, dass jedes Stück genau so an seinem Bestimmungsort ankommt, wie es konzipiert wurde: perfekt." },
                     { title: "Unsere Vision", subtitle: "HÜTER DER SCHÖNHEIT", content: "Italienisches Design ist ein Kunstwerk. Es verdient eine makellose Reise. TCT24 garantiert absolute Perfektion." },
-                    { title: "Transport vs. Schutz", subtitle: "EXZELLENZ IM DETAIL", content: "Wir fahren erst los, wenn die Ladung zu 100 % gesichert ist. Jeder Gurt, jeder Schutz, jeder Millimeter ist berechnet.", labels: ["ÜBERNAHME", "TCT24 METHODE"] },
+                    { title: "Transport vs. Schutz", subtitle: "EXZELLENZ IM DETAIL", content: "Wir fahren erst los, wenn die Ladung zu 100 % gesichert ist. Jeder Gurt, jeder Schutz, jeder Millimeter ist berechnet.", labels: ["ZUSTAND BEI ÜBERNAHME", "TCT24 METHODE"] },
                     { title: "Korfu: Fallstudie", subtitle: "SCHLÜSSELFERTIGER SERVICE", content: "Wir verwalten jede Phase mit Präzision: Lieferung, Entladung, Positionierung, Auspacken und Entsorgung der Verpackung.", labels: ["Liebe zum Detail", "Platzierung"] },
                     { title: "Grenzenlos in Europa", subtitle: "UK • SCHWEIZ • TÜRKEI", content: "London, Zürich, Istanbul: Wir verwandeln Zollbarrieren in fließende Übergänge. Stressfreier internationaler Transport." },
                     { title: "Technik & Sicherheit", subtitle: "RUNDUMSCHUTZ", content: "Wir wickeln jede Sendung nach höchsten Standards ab: maßgeschneiderter All-Risk-Versicherungsschutz.",
@@ -153,8 +153,8 @@
             FR: {
                 nav: { call: "Appeler", division: "Luxury Division" },
                 slides: [
-                    { title: "L'excellence en mouvement", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division garantit que chaque pièce arrive à destination exactement comme elle a été conçue : parfaite." },
-                    { title: "Notre vision", subtitle: "GARDIENS DE LA BEAUTÉ", content: "Le design italien est una opera d'arte. Il mérite un voyage impeccabile. TCT24 Luxury Division garantisce che ogni pezzo arrivi a destinazione esattamente come è stato concepito: perfetto." },
+                    { title: "L'excellence en mouvement", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division garantit que chaque pièce arrive à destination exactement come elle a été conçue : parfaite." },
+                    { title: "Notre vision", subtitle: "GARDIENS DE LA BEAUTÉ", content: "Le design italiano est una opera d'arte. Il mérite un voyage impeccabile. TCT24 Luxury Division garantit la perfection." },
                     { title: "Transporter vs protéger", subtitle: "L'EXCELLENCE DANS LES DÉTAILS", content: "Nous ne partons che si la marchandise est sécurisée à 100%. Ogni sangle, ogni protection, ogni millimètre est calculé pour l'intégrité de la valore qui nous est confiée.", labels: ["ÉTAT RÉCEPTION CHARGEMENT", "MÉTHODE TCT24 LUXURY"] },
                     { title: "Corfou : étude de cas", subtitle: "SERVICE CLÉS EN MAIN", content: "Nous gérons ogni étape con precision : livraison, déchargement, positionnement, déballage et élimination complète des emballages.", labels: ["Soin du dettaglio", "Placement final"] },
                     { title: "Sans frontières en Europa", subtitle: "UK • SUISSE • TURQUIE", content: "Londres, Zurich, Istanbul : nous transformons le barrières douanières en passages fluides. Nous gérons ogni complexité bureaucratique de A à Z, garantissant un transport international sans escale et senza stress." },
@@ -167,7 +167,7 @@
             ES: {
                 nav: { call: "Llamar", division: "Luxury Division" },
                 slides: [
-                    { title: "La excelencia en movimiento", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division garantiza que cada pieza llegue a su destino exactamente como fue concebida: perfecta." },
+                    { title: "La excelencia en movimiento", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division garantiza que cada pieza llegue a su destino exactamente come fue concebida: perfecta." },
                     { title: "Nuestra visión", subtitle: "CUSTODIOS DE LA BELLEZA", content: "El sistema de design italiano è una opera de arte. Merita un viaggio impeccabile. TCT24 Luxury Division garantisce che ogni pezzo arrivi a destinazione esattamente come è stato concepito: perfetto." },
                     { title: "Transportar vs proteger", subtitle: "LA EXCELENCIA EN LOS DETALLES", content: "Solo salimos si la mercancía está segura al 100%. Cada correa, cada protezione, cada milímetro está calculado para la integridad del valore che se ci viene affidato.", labels: ["ESTADO RECEPCIÓN CARGA", "MÉTODO TCT24 LUXURY"] },
                     { title: "Corfú: caso de estudio", subtitle: "SERVICIO LLAVE EN MANO", content: "Gestionamos cada fase con precision: consegna, descarga, posizionamento, desembalaje e eliminación completa de los embalajes.", labels: ["Cuidado del dettaglio", "Colocación final"] },
@@ -229,7 +229,7 @@
             const next = () => setCurrentSlide((prev) => (prev + 1) % slidesContent.length);
             const prev = () => setCurrentSlide((prev) => (prev - 1 + slidesContent.length) % slidesContent.length);
 
-            // Tastiera
+            // Gestione Tastiera
             useEffect(() => {
                 const handleKeyDown = (e) => {
                     if (e.key === 'ArrowRight') next();
@@ -275,6 +275,7 @@
             const slideData = slidesContent[currentSlide];
             const slideText = t.slides[currentSlide];
 
+            // Handlers Swipe Touch
             const onTouchStart = (e) => { touchEndX.current = null; touchStartX.current = e.targetTouches[0].clientX; };
             const onTouchMove = (e) => { touchEndX.current = e.targetTouches[0].clientX; };
             const onTouchEnd = () => {
@@ -284,13 +285,32 @@
                 else if (distance < -minSwipeDistance) prev();
             };
 
+            // Handlers Swipe Mouse
+            const onMouseDown = (e) => { 
+                touchEndX.current = null; 
+                touchStartX.current = e.clientX; 
+            };
+            const onMouseUp = (e) => {
+                if (touchStartX.current === null) return;
+                const distance = touchStartX.current - e.clientX;
+                if (Math.abs(distance) > minSwipeDistance) {
+                    if (distance > 0) next();
+                    else prev();
+                }
+                touchStartX.current = null;
+            };
+
             const isDark = slideData.bg === "bg-ebonite";
             const isLastSlide = currentSlide === slidesContent.length - 1;
 
             return (
                 <div 
                     className={`min-h-screen flex flex-col transition-colors duration-500 ${slideData.bg}`}
-                    onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}
+                    onTouchStart={onTouchStart} 
+                    onTouchMove={onTouchMove} 
+                    onTouchEnd={onTouchEnd}
+                    onMouseDown={onMouseDown}
+                    onMouseUp={onMouseUp}
                 >
                     <nav className="bg-ebonite border-b border-slate-800 px-4 md:px-6 py-4 flex justify-between items-center sticky top-0 z-50 shadow-2xl relative">
                         <div className="flex items-center gap-4">
