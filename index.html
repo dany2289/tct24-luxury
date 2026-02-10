@@ -16,7 +16,7 @@
     <style>
         /* CURSORE PERSONALIZZATO - LOGICA CSS */
         @media (pointer: fine) {
-            body, a, button, [role="button"] { cursor: none !important; }
+            body, a, button, [role="button"], .img-zoom-container { cursor: none !important; }
             
             .custom-cursor {
                 width: 8px;
@@ -244,7 +244,7 @@
                     { title: "Transportar vs proteger", subtitle: "LA EXCELENCIA EN LOS DETALLES", content: "Solo salimos si la mercancía está segura al 100%. Cada milímetro está calculado para la integridad di su valor.", labels: ["RECEPCIÓN", "MÉTODO TCT24"] },
                     { title: "Corfù: caso de estudio", subtitle: "SERVICIO LLAVE EN MANO", content: "Entrega, descarga técnica y posicionamiento milimétrico. Un servicio dedicato para su seguridad total.", labels: ["Cuidado del dettaglio", "Colocación final"] },
                     { title: "Sin fronteras", subtitle: "UK • SUIZA • TURQUÍA", content: "Londres, Zúrich, París. Gestionamos cada complejidad aduanera de la A a la Z. Logística de élite sin fronteras." },
-                    { title: "Tecnología y seguridad", subtitle: "PROTECCIÓN TOTAL", content: "Monitoreo constante y los más altos estándares del mercado.",
+                    { title: "Tecnología y seguridad", subtitle: "PROTECCIÓN TOTAL", content: "Monitoreo constante e i più alti standard del mercato.",
                         features: [{ title: "Seguro All-Risk", desc: "Valor garantizado." }, { title: "Seguimiento en tiempo real", desc: "Posición constante." }, { title: "Plataforma elevadora", desc: "Descarga técnica." }]
                     },
                     { title: "Contáctenos", subtitle: "PLANIFICAMOS SU VIAJE", content: "Confíe su prestigio a manos expertas." }
@@ -339,7 +339,8 @@
                 }
 
                 const target = e.target;
-                const isInteracting = target.closest('a') || target.closest('button') || target.closest('.img-zoom-container');
+                // LOGICA HOVER: Rimosso .img-zoom-container per non far espandere il cursore sulle foto
+                const isInteracting = target.closest('a') || target.closest('button');
                 setIsHoveringInteractions(!!isInteracting);
             };
 
@@ -587,7 +588,7 @@
                                         ) : slideData.isComparison ? (
                                             <div className="flex flex-col gap-4 w-full">
                                                 {slideData.images.map((img, idx) => (
-                                                    <div key={idx} className={`relative rounded-lg overflow-hidden shadow-xl border border-white/10 img-zoom-container cursor-pointer parallax-layer-${idx+1} ${idx === 1 ? 'md:-translate-x-8 border-2 border-gold shadow-2xl' : ''}`}>
+                                                    <div key={idx} className={`relative rounded-lg overflow-hidden shadow-xl border border-white/10 img-zoom-container parallax-layer-${idx+1} ${idx === 1 ? 'md:-translate-x-8 border-2 border-gold shadow-2xl' : ''}`}>
                                                         <img src={img} alt="Detail" className="w-full h-48 md:h-64 object-cover" />
                                                         <div className={`absolute top-4 left-4 text-white text-[9px] font-bold px-3 py-1 rounded-full uppercase tracking-widest ${idx === 1 ? 'bg-gold' : 'bg-black/70'}`}>
                                                             {slideText.labels[idx]}
@@ -596,7 +597,7 @@
                                                 ))}
                                             </div>
                                         ) : slideData.image ? (
-                                            <div className="rounded-xl overflow-hidden shadow-2xl border border-white/5 img-zoom-container cursor-pointer w-full parallax-layer-2">
+                                            <div className="rounded-xl overflow-hidden shadow-2xl border border-white/5 img-zoom-container w-full parallax-layer-2">
                                                 <img src={slideData.image} alt="Visual" className="w-full h-64 md:h-[500px] object-cover" />
                                             </div>
                                         ) : null}
