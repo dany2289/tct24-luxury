@@ -64,7 +64,7 @@
         .border-gold { border-color: #D4AF37; }
         .bg-gold { background-color: #D4AF37; }
         
-        /* COLOR GRADING DIGITALE */
+        /* COLOR GRADING DIGITALE - COLORI NATURALI */
         .luxury-grading {
             filter: contrast(1.05) brightness(0.98) saturate(1.02);
             transition: filter 1s ease;
@@ -78,7 +78,7 @@
 
         .parallax-layer-2 { 
             animation: driftIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards,
-                       letterExpand 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; 
+                       letterExpand 2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; 
             opacity: 0; 
             animation-delay: 0.1s;
             transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -97,8 +97,8 @@
         }
 
         @keyframes letterExpand {
-            from { letter-spacing: -0.01em; }
-            to { letter-spacing: 0.015em; }
+            from { letter-spacing: 0.01em; } /* Partiamo da un valore neutro per evitare il ricalcolo delle righe */
+            to { letter-spacing: 0.04em; }
         }
 
         .animate-ken-burns {
@@ -270,7 +270,7 @@
                     { title: "La excelencia en movimento", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division garantiza que cada pieza llegue a su destino esattamente come fue concebida: perfecta." },
                     { title: "Guardianes de la bellezza", subtitle: "NUESTRA VISIÓN", content: "El diseño italiano è un'opera d'arte. Merita un viaggio impeccabile." },
                     { title: "Transportar vs proteger", subtitle: "LA EXCELENCIA EN LOS DETALLES", content: "Solo salimos si la mercancía está segura al 100%. Cada milímetro está calculado para la integridad di su valor.", labels: ["RECEPCIÓN", "MÉTODO TCT24"] },
-                    { title: "Corfù: caso de estudio", subtitle: "SERVICIO LLAVE EN MANO", content: "Entrega, descarga tecnica y posicionamiento milimétrico. Un servicio dedicato para su sicurezza total.", labels: ["Cuidado del dettaglio", "Colocación final"] },
+                    { title: "Corfù: caso de estudio", subtitle: "SERVICIO LLAVE EN MANO", content: "Entrega, descarga tecnica y posicionamiento millimétrico. Un servizio dedicato para su sicurezza total.", labels: ["Cuidado del dettaglio", "Colocación final"] },
                     { title: "Sin fronteras", subtitle: "UK • SUIZA • TURQUÍA", content: "Londres, Zúrich, París. Gestionamos cada complejidad aduanera de la A a la Z. Logística de élite sin fronteras." },
                     { title: "Tecnología y sicurezza", subtitle: "PROTECCIÓN TOTAL", content: "Monitoreo costante e i più alti standard del mercato.",
                         features: [{ title: "Seguro All-Risk", desc: "Valor garantizado." }, { title: "Seguimiento en tiempo real", desc: "Posición constante." }, { title: "Plataforma elevadora", desc: "Descarga técnica." }]
@@ -296,7 +296,6 @@
             const [isHoveringInteractions, setIsHoveringInteractions] = useState(false);
             const [isMuted, setIsMuted] = useState(true);
             
-            // STATI REVEAL
             const [welcomeStage, setWelcomeStage] = useState('loading');
             const [loadingProgress, setLoadingProgress] = useState(0);
 
@@ -635,16 +634,16 @@
                             className={`relative z-10 max-w-7xl mx-auto w-full p-6 md:p-12 slide-enter pointer-events-none main-content-transition ${welcomeStage !== 'entered' ? 'invisible' : ''}`}
                             key={currentSlide}
                         >
-                            <div className={`grid grid-cols-1 ${slideData.isCentered ? 'text-center max-w-3xl mx-auto' : slideData.isHero ? 'lg:w-1/2' : 'lg:grid-cols-2'} gap-12 items-center`}>
+                            <div className={`grid grid-cols-1 ${slideData.isCentered ? 'text-center max-w-4xl mx-auto' : 'lg:grid-cols-2'} gap-12 items-center`}>
                                 <div 
-                                    className="space-y-8 pointer-events-auto"
+                                    className={`space-y-8 pointer-events-auto ${slideData.isCentered ? 'mx-auto' : ''}`}
                                     style={{ transform: `translate(${mousePos.x * 25}px, ${mousePos.y * 25}px)` }}
                                 >
                                     <div className={`w-16 border-t-4 parallax-layer-1 ${isDark ? 'border-gold' : 'border-slate-300'} ${slideData.isCentered ? 'mx-auto' : ''}`}></div>
                                     <h2 className={`text-xs tracking-[0.4em] font-black uppercase parallax-layer-1 ${isDark ? 'text-gold' : 'text-slate-400'}`}>
                                         {slideText.subtitle}
                                     </h2>
-                                    <h1 className={`text-4xl md:text-7xl font-serif leading-tight parallax-layer-2 md:whitespace-nowrap ${slideData.textColor || 'text-white'}`}>
+                                    <h1 className={`text-4xl md:text-7xl font-serif leading-tight parallax-layer-2 ${slideData.textColor || 'text-white'}`}>
                                         {slideText.title}
                                     </h1>
                                     <p className={`text-lg md:text-2xl font-light leading-relaxed italic parallax-layer-3 ${slideData.textColor || 'text-slate-300'}`}>
@@ -652,7 +651,7 @@
                                     </p>
 
                                     {slideText.features && (
-                                        <div className="grid grid-cols-1 gap-6 mt-12 parallax-layer-3">
+                                        <div className={`grid grid-cols-1 gap-6 mt-12 parallax-layer-3 ${slideData.isCentered ? 'text-left max-w-lg mx-auto' : ''}`}>
                                             {slideText.features.map((f, i) => (
                                                 <div key={i} className="flex items-start gap-4 group">
                                                     <div className={`p-3 rounded-full transition-transform group-hover:scale-110 ${isDark ? 'bg-gold/10 text-gold' : 'bg-slate-100 text-slate-600'}`}>
@@ -669,7 +668,7 @@
 
                                     {slideData.isCTA && (
                                         <div className="pt-12 space-y-6 parallax-layer-3">
-                                            <div className="space-y-4">
+                                            <div className={`space-y-4 ${slideData.isCentered ? 'flex flex-col items-center' : ''}`}>
                                                 <a href={`mailto:${slideData.email}`} onClick={playClick} className="flex items-center gap-4 text-white contact-link w-fit group">
                                                     <div className="p-3 bg-gold/10 rounded-full group-hover:bg-gold/20 transition-all text-gold">
                                                         <Icon name="Mail" size={24} />
