@@ -25,7 +25,7 @@
                 border-radius: 50%;
                 position: fixed;
                 pointer-events: none;
-                z-index: 9999;
+                z-index: 10000;
                 transform: translate(-50%, -50%);
                 will-change: left, top;
             }
@@ -37,7 +37,7 @@
                 border-radius: 50%;
                 position: fixed;
                 pointer-events: none;
-                z-index: 9998;
+                z-index: 9999;
                 transform: translate(-50%, -50%);
                 transition: left 0.15s ease-out, top 0.15s ease-out, width 0.3s, height 0.3s, border 0.3s, background-color 0.3s;
                 will-change: left, top;
@@ -64,6 +64,7 @@
         .border-gold { border-color: #D4AF37; }
         .bg-gold { background-color: #D4AF37; }
         
+        /* Animazioni di parallasse */
         .parallax-layer-1 { 
             animation: driftIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
             transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -94,12 +95,21 @@
             100% { transform: scale(1.25) translate(-1%, -1%); }
         }
 
+        /* ANIMAZIONE LOGO PULSANTE (REVEAL) */
+        .animate-logo-breath {
+            animation: logoBreath 4s ease-in-out infinite;
+        }
+        @keyframes logoBreath {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #0f172a; }
         ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
 
         .img-overlay {
-            background: linear-gradient(to right, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.7) 40%, rgba(15, 23, 42, 0.2) 100%);
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.7) 40%, rgba(15, 23, 42, 0.3) 100%);
         }
 
         .img-overlay-centered {
@@ -132,6 +142,14 @@
             overflow: hidden;
             transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
+
+        /* TRANSIZIONE REVEAL */
+        .reveal-exit {
+            transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1), transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: scale(1.1);
+            pointer-events: none;
+        }
     </style>
 </head>
 <body class="bg-ebonite">
@@ -154,7 +172,8 @@
                 Mail: <><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></>,
                 Languages: <><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></>,
                 Volume2: <><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></>,
-                VolumeX: <><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></>
+                VolumeX: <><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></>,
+                Play: <path d="m5 3 14 9-14 9V3z"/>
             };
             return (
                 <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -166,6 +185,7 @@
         const translations = {
             IT: {
                 nav: { call: "Chiama", division: "Luxury Division" },
+                reveal: { enter: "Entra nell'Eccellenza" },
                 slides: [
                     { title: "L'eccellenza in movimento", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division garantisce l’arrivo a destinazione di ogni pezzo così come è stato concepito: perfetto." },
                     { title: "Siamo i custodi della bellezza", subtitle: "LA NOSTRA VISIONE", content: "Il design italiano è un'opera d'arte. Merita un viaggio impeccabile." },
@@ -180,6 +200,7 @@
             },
             EN: {
                 nav: { call: "Call", division: "Luxury Division" },
+                reveal: { enter: "Enter Excellence" },
                 slides: [
                     { title: "Excellence in Motion", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division guarantees that every piece arrives at its destination exactly as it was conceived: perfect." },
                     { title: "Guardians of beauty", subtitle: "OUR VISION", content: "Italian design is a work of art. It deserves a flawless journey." },
@@ -194,20 +215,22 @@
             },
             PL: {
                 nav: { call: "Zadzwoń", division: "Luxury Division" },
+                reveal: { enter: "Wstąp do doskonałości" },
                 slides: [
                     { title: "Perfekcja w ruchu", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division gwarantuje, że każdy element dotrze do celu dokładnie tak, jak został zaprojektowany: idealnie." },
                     { title: "Nasza wizja", subtitle: "STRAŻNICY PIĘKNA", content: "Włoski design to dzieło sztuki. Zasługuje na nieskazitelną podróż." },
                     { title: "Transport vs ochrona", subtitle: "PERFEKCJA W DETALACH", content: "Ruszamy tylko wtedy, gdy ładunek jest w 100% bezpieczny. Każdy milimetr jest wyliczony dla ochrony Twoich dóbr.", labels: ["STAN PRZYJĘCIA", "METODA TCT24"] },
                     { title: "Korfu: studium przypadku", subtitle: "USŁUGA POD KLUCZ", content: "Dostawa, rozładunek techniczny i precyzyjne ustawienie. Dedykowana usługa dla Twojego pełnego bezpieczeństwa.", labels: ["Dbałość o detale", "Ustawienie końcowe"] },
                     { title: "Bez granic w Europie", subtitle: "UK • SZWAJCARIA • TURCJA", content: "Londyn, Zurych, Paryż. Zarządzamy wszelkimi formalnościami celnymi od A do Z. Elitarna logistyka bez granic." },
-                    { title: "Technologia i bezpieczeństwo", subtitle: "PEŁNA OCHRONA", content: "Stały nadzór i najwyższe standardy rynkowe.",
+                    { title: "Technologia i sicurezza", subtitle: "PEŁNA OCHRONA", content: "Stały nadzór i najwyższe standardy rynkowe.",
                         features: [{ title: "Ubezpieczenie All-Risk", desc: "Gwarancja wartości." }, { title: "Tracking w czasie rzeczywistym", desc: "Stały nadzór." }, { title: "Winda załadowcza", desc: "Rozładunek techniczny." }]
                     },
-                    { title: "Skontaktuj siĘ con nami", subtitle: "PLANUJEMY TWOJĄ PODRÓŻ", content: "Powierz swój prestiż w ręce ekspertów." }
+                    { title: "Skontaktuj się con nami", subtitle: "PLANUJEMY TWOJĄ PODRÓŻ", content: "Powierz swój prestiż w ręce ekspertów." }
                 ]
             },
             DE: {
                 nav: { call: "Anrufen", division: "Luxury Division" },
+                reveal: { enter: "Exzellenz erleben" },
                 slides: [
                     { title: "Exzellenz in Bewegung", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division garantiert, dass jedes Stück genau so an seinem Bestimmungsort ankommt, wie es konzipiert wurde: perfekt." },
                     { title: "Wir sind die Hüter della Schönheit", subtitle: "UNSERE VISION", content: "Italienisches Design ist ein Kunstwerk. Es verdient eine makellose Reise." },
@@ -222,6 +245,7 @@
             },
             FR: {
                 nav: { call: "Appeler", division: "Luxury Division" },
+                reveal: { enter: "Entrez dans l'excellence" },
                 slides: [
                     { title: "L'excellence en movimento", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division garantit che chaque pièce arrive à destination esattamente come elle a été conçue : parfaite." },
                     { title: "Gardiens de la beauté", subtitle: "NOTRE VISION", content: "Le design italiano est una opera d'arte. Il mérite un voyage impeccabile." },
@@ -236,6 +260,7 @@
             },
             ES: {
                 nav: { call: "Llamar", division: "Luxury Division" },
+                reveal: { enter: "Entre en la excelencia" },
                 slides: [
                     { title: "La excelencia en movimento", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division garantiza que cada pieza llegue a su destino esattamente como fue concebida: perfecta." },
                     { title: "Guardianes de la bellezza", subtitle: "NUESTRA VISIÓN", content: "El diseño italiano è un'opera d'arte. Merita un viaggio impeccabile." },
@@ -266,11 +291,13 @@
             const [isHoveringInteractions, setIsHoveringInteractions] = useState(false);
             const [isMuted, setIsMuted] = useState(true);
             
+            // STATI REVEAL
+            const [welcomeStage, setWelcomeStage] = useState('loading'); // loading -> ready -> entered
+            const [loadingProgress, setLoadingProgress] = useState(0);
+
             const auraRef = useRef(null);
             const cursorRef = useRef(null);
             const audioRef = useRef(null);
-            
-            /* SOUND DESIGN REFS */
             const swooshRef = useRef(null);
             const clickRef = useRef(null);
 
@@ -285,8 +312,6 @@
             const [netProgress, setNetProgress] = useState(0);
             const [netIsClearing, setNetIsClearing] = useState(false);
             
-            const intervalDuration = 4000; 
-            const touchStartX = useRef(null);
             const minSwipeDistance = 50;
 
             const languages = [
@@ -305,6 +330,23 @@
                 { id: "cta", isCTA: true, bg: "bg-ebonite", email: "info@tct24.it", phone: "+39 392 901 4511", qr: "qr-daniel.png" }
             ];
 
+            // GESTIONE BARRA CARICAMENTO (REVEAL)
+            useEffect(() => {
+                if (welcomeStage === 'loading') {
+                    const timer = setInterval(() => {
+                        setLoadingProgress(prev => {
+                            if (prev >= 100) {
+                                clearInterval(timer);
+                                setTimeout(() => setWelcomeStage('ready'), 300);
+                                return 100;
+                            }
+                            return prev + 1.2;
+                        });
+                    }, 30);
+                    return () => clearInterval(timer);
+                }
+            }, [welcomeStage]);
+
             const playSwoosh = () => {
                 if (swooshRef.current) {
                     swooshRef.current.playbackRate = 1.6;
@@ -320,6 +362,15 @@
                     clickRef.current.currentTime = 0;
                     clickRef.current.play().catch(() => {});
                 }
+            };
+
+            const handleEnterExperience = () => {
+                playClick();
+                playSwoosh();
+                if (audioRef.current) {
+                    audioRef.current.play().then(() => setIsMuted(false)).catch(() => {});
+                }
+                setWelcomeStage('entered');
             };
 
             const next = () => {
@@ -371,31 +422,18 @@
 
             useEffect(() => {
                 window.addEventListener('mousemove', handleGlobalMouseMove);
-                
-                const startAudio = () => {
-                    if (audioRef.current && isMuted) {
-                        audioRef.current.play()
-                            .then(() => setIsMuted(false))
-                            .catch(() => {});
-                    }
-                    window.removeEventListener('click', startAudio);
-                };
-                window.addEventListener('click', startAudio);
-
-                return () => {
-                    window.removeEventListener('mousemove', handleGlobalMouseMove);
-                    window.removeEventListener('click', startAudio);
-                };
+                return () => window.removeEventListener('mousemove', handleGlobalMouseMove);
             }, []);
 
             useEffect(() => {
                 const handleKeyDown = (e) => {
+                    if (welcomeStage !== 'entered') return;
                     if (e.key === 'ArrowRight') next();
                     else if (e.key === 'ArrowLeft') prev();
                 };
                 window.addEventListener('keydown', handleKeyDown);
                 return () => window.removeEventListener('keydown', handleKeyDown);
-            }, [currentSlide]);
+            }, [currentSlide, welcomeStage]);
 
             useEffect(() => {
                 if (currentSlide !== 0) { setHeroProgress(0); setHeroIsClearing(false); return; }
@@ -433,6 +471,7 @@
 
             const handleStart = (clientX) => { touchStartX.current = clientX; };
             const handleEnd = (clientX) => {
+                if (welcomeStage !== 'entered') return;
                 if (touchStartX.current === null) return;
                 const distance = touchStartX.current - clientX;
                 if (Math.abs(distance) > minSwipeDistance) {
@@ -458,6 +497,39 @@
 
                     <div ref={cursorRef} className="custom-cursor"></div>
                     <div ref={auraRef} className="custom-cursor-aura"></div>
+
+                    {/* SCHERMATA REVEAL / BENVENUTO */}
+                    {welcomeStage !== 'entered' && (
+                        <div className={`fixed inset-0 z-[9000] bg-ebonite flex flex-col items-center justify-center p-8 transition-opacity duration-1000 ${welcomeStage === 'entered' ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+                            <div className="flex flex-col items-center max-w-sm w-full text-center">
+                                <img src="logo.png" alt="TCT24 Luxury" className="h-16 md:h-20 w-auto mb-12 animate-logo-breath" />
+                                
+                                {welcomeStage === 'loading' ? (
+                                    <div className="w-full space-y-4">
+                                        <div className="h-[1px] w-full bg-white/10 overflow-hidden relative">
+                                            <div 
+                                                className="h-full bg-gold transition-all duration-300 ease-out"
+                                                style={{ width: `${loadingProgress}%` }}
+                                            ></div>
+                                        </div>
+                                        <p className="text-[10px] font-black tracking-[0.4em] uppercase text-gold/50">Preparazione prestigio</p>
+                                    </div>
+                                ) : (
+                                    <button 
+                                        onClick={handleEnterExperience}
+                                        className="group relative flex flex-col items-center gap-4 py-4 px-8 outline-none"
+                                    >
+                                        <div className="p-4 rounded-full border border-gold text-gold group-hover:bg-gold group-hover:text-ebonite transition-all duration-500 scale-110">
+                                            <Icon name="Play" size={24} />
+                                        </div>
+                                        <span className="text-xs font-black tracking-[0.4em] uppercase text-white group-hover:text-gold transition-colors duration-500">
+                                            {t.reveal.enter}
+                                        </span>
+                                    </button>
+                                )}
+                            </div>
+                        </div>
+                    )}
 
                     <nav className="bg-ebonite border-b border-slate-800 px-4 md:px-6 py-4 flex justify-between items-center sticky top-0 z-50 shadow-2xl relative">
                         <div className="flex items-center gap-4">
@@ -544,7 +616,7 @@
                         ) : null}
 
                         <div 
-                            className="relative z-10 max-w-7xl mx-auto w-full p-6 md:p-12 slide-enter pointer-events-none main-content-transition"
+                            className={`relative z-10 max-w-7xl mx-auto w-full p-6 md:p-12 slide-enter pointer-events-none main-content-transition ${welcomeStage !== 'entered' ? 'invisible' : ''}`}
                             key={currentSlide}
                         >
                             <div className={`grid grid-cols-1 ${slideData.isCentered ? 'text-center max-w-3xl mx-auto' : slideData.isHero ? 'lg:w-1/2' : 'lg:grid-cols-2'} gap-12 items-center`}>
@@ -630,7 +702,7 @@
                         </div>
                     </main>
 
-                    <footer className="p-8 flex items-center justify-between max-w-7xl mx-auto w-full border-t border-white/10 relative z-20">
+                    <footer className={`p-8 flex items-center justify-between max-w-7xl mx-auto w-full border-t border-white/10 relative z-20 transition-opacity duration-1000 ${welcomeStage !== 'entered' ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                         <div className="flex gap-4">
                             <button onClick={() => { playClick(); prev(); }} className={`p-4 rounded-full border transition-all hover:scale-110 active:scale-95 ${isDark ? 'border-white/20 text-white hover:bg-white/10' : 'border-slate-900/10 text-slate-900 hover:bg-slate-900/5'}`}>
                                 <Icon name="ChevronLeft" size={24} />
