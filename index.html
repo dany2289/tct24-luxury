@@ -64,22 +64,27 @@
         .border-gold { border-color: #D4AF37; }
         .bg-gold { background-color: #D4AF37; }
         
-        /* COLOR GRADING DIGITALE: Tono desaturato, contrastato e freddo */
+        /* COLOR GRADING DIGITALE */
         .luxury-grading {
             filter: saturate(0.75) contrast(1.1) brightness(0.9) sepia(0.05) hue-rotate(180deg);
             transition: filter 1s ease;
         }
 
+        /* ANIMAZIONI DI PARALLASSE E TIPOGRAFIA DINAMICA */
         .parallax-layer-1 { 
             animation: driftIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
             transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
+
+        /* Il livello 2 (Titoli) ora include l'espansione del letter-spacing */
         .parallax-layer-2 { 
-            animation: driftIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; 
+            animation: driftIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards,
+                       letterExpand 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; 
             opacity: 0; 
             animation-delay: 0.1s;
             transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
+
         .parallax-layer-3 { 
             animation: driftIn 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; 
             opacity: 0; 
@@ -90,6 +95,12 @@
         @keyframes driftIn {
             from { opacity: 0; transform: translateX(30px) translateY(10px); }
             to { opacity: 1; transform: translateX(0) translateY(0); }
+        }
+
+        /* Nuova animazione per il "respiro" dei titoli */
+        @keyframes letterExpand {
+            from { letter-spacing: -0.02em; }
+            to { letter-spacing: 0.02em; }
         }
 
         .animate-ken-burns {
@@ -185,7 +196,7 @@
                 slides: [
                     { title: "L'eccellenza in movimento", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division garantisce l’arrivo a destinazione di ogni pezzo così come è stato concepito: perfetto." },
                     { title: "Siamo i custodi della bellezza", subtitle: "LA NOSTRA VISIONE", content: "Il design italiano è un'opera d'arte. Merita un viaggio impeccabile." },
-                    { title: "Trasportare vs proteggere", subtitle: "L'ECCELLENZA NEI DETTAGLI", content: "Partiamo solo se la merce è sicura al 100%. Ogni millimetro è calcolati per l'integrità del valore affidatoci.", labels: ["STATO RICEZIONE", "METODO TCT24"] },
+                    { title: "Trasportare vs proteggere", subtitle: "L'ECCELLENZA NEI DETTAGLI", content: "Partiamo solo se la merce è sicura al 100%. Ogni millimetro è calcolato per l'integrità del valore affidatoci.", labels: ["STATO RICEZIONE", "METODO TCT24"] },
                     { title: "Corfù: case study", subtitle: "SERVIZIO CHIAVI IN MANO", content: "Consegna, scarico tecnico e posizionamento millimetrico. Un servizio dedicato per la vostra totale sicurezza.", labels: ["Cura del dettaglio", "Posizionamento finale"] },
                     { title: "Oltre ogni confine", subtitle: "UK • SVIZZERA • TURCHIA", content: "Londra, Zurigo, Parigi. Gestiamo ogni complessità doganale dalla A alla Z. Logistica d'élite senza confini.", labels: ["Tratte internazionali", "Precisione geografica"] },
                     { title: "Tecnologia e sicurezza", subtitle: "PROTEZIONE TOTALE", content: "Monitoraggio costante e i più alti standard di mercato.",
@@ -287,6 +298,7 @@
             const [isHoveringInteractions, setIsHoveringInteractions] = useState(false);
             const [isMuted, setIsMuted] = useState(true);
             
+            // STATI REVEAL
             const [welcomeStage, setWelcomeStage] = useState('loading');
             const [loadingProgress, setLoadingProgress] = useState(0);
 
@@ -634,10 +646,10 @@
                                     <h2 className={`text-xs tracking-[0.4em] font-black uppercase parallax-layer-1 ${isDark ? 'text-gold' : 'text-slate-400'}`}>
                                         {slideText.subtitle}
                                     </h2>
-                                    <h1 className={`text-4xl md:text-7xl font-serif leading-tight ${slideData.textColor || 'text-white'}`}>
+                                    <h1 className={`text-4xl md:text-7xl font-serif leading-tight parallax-layer-2 ${slideData.textColor || 'text-white'}`}>
                                         {slideText.title}
                                     </h1>
-                                    <p className={`text-lg md:text-2xl font-light leading-relaxed italic ${slideData.textColor || 'text-slate-300'}`}>
+                                    <p className={`text-lg md:text-2xl font-light leading-relaxed italic parallax-layer-3 ${slideData.textColor || 'text-slate-300'}`}>
                                         {slideText.content}
                                     </p>
 
