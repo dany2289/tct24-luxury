@@ -227,10 +227,10 @@
                     { title: "Podróż zaczyna się od ochrony", subtitle: "TROSKA O SZCZEGÓŁY", content: "Każdy element jest przygotowany z najwyższą starannością, ponieważ piękno zasługuje na szacunek.", labels: ["STAN PRZYJĘCIA", "METODA TCT24"] },
                     { title: "Korfu:\nstudium przypadku", subtitle: "USŁUGA POD KLUCZ", content: "Od dostawy po milimetrowe ustawienie, każdy etap jest zarządzany z absolutną precyzją.", labels: ["Dbałość o detale", "Ustawienie końcowe"] },
                     { title: "Bez granic\nw Europie", subtitle: "UK • SZWAJCARIA • TURCJA", content: "Londyn, Zurych, Paryż. Zarządzamy wszelkimi formalnościami celnymi od A do Z. Elitarna logistyka bez granic.", labels: ["Trasy międzynarodowe", "Precyzja geograficzna"] },
-                    { title: "Technologia i sicurezza", subtitle: "PEŁNA OCHRONA", content: "Stały nadzór i najwyższe standardy rynkowe.",
+                    { title: "Technologia i bezpieczeństwo", subtitle: "PEŁNA OCHRONA", content: "Stały nadzór i najwyższe standardy rynkowe.",
                         features: [{ title: "ALL-RISK", desc: "Gwarancja wartości." }, { title: "TRACKING W CZASIE RZECZYWISTYM", desc: "Stały nadzór." }, { title: "WINDA ZAŁADOWCZA", desc: "Rozładunek techniczny." }]
                     },
-                    { title: "Skontaktuj się con nami", subtitle: "PLANUJEMY TWOJĄ PODRÓŻ", content: "Powierz swój prestiż w ręce ekspertów." }
+                    { title: "Skontaktuj się z nami", subtitle: "PLANUJEMY TWOJĄ PODRÓŻ", content: "Powierz swój prestiż w ręce ekspertów." }
                 ]
             },
             DE: {
@@ -255,7 +255,7 @@
                     { title: "L'excellence à ogni étape", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division. La perfection arrive à destination. Toujours." },
                     { title: "La beauté mérite protection", subtitle: "NOTRE VISION", content: "Ogni création italienne voyage avec le soin qui lui appartient." },
                     { title: "Le voyage commence par la protezione", subtitle: "LE SOIN DU DÉTAIL", content: "Chaque pièce est préparée avec une attention absolue, car la beauté mérite le respect.", labels: ["RÉCEPTION", "MÉTHODE TCT24"] },
-                    { title: "Corfou :\nétude de cas", subtitle: "SERVICE CLÉS EN MAIN", content: "Livraison, déchargement technique et positionnement millimétré. Un servizio dedicato per la votre totale sicurezza.", labels: ["Soin du détail", "Placement final"] },
+                    { title: "Corfou :\nétude de cas", subtitle: "SERVICE CLÉS EN MAIN", content: "Livraison, déchargement technique et positionnement millimétré. Un servizio dedicato per la votre totale sicurezza.", labels: ["Soin du dettaglio", "Placement final"] },
                     { title: "Sans frontières\nen Europe", subtitle: "UK • SUISSE • TURQUIE", content: "Londres, Zurich, Paris. Nous gérons ogni complexité bureaucratique de A à Z. Logistique d'élite senza frontières.", labels: ["Routes internationales", "Précision géographique"] },
                     { title: "Technologie et sicurezza", subtitle: "PROTECTION TOTALE", content: "Suivi constant et les normes les plus élevées du marché.",
                         features: [{ title: "Assurance All-Risk", desc: "Valeur garantie." }, { title: "SUIVI EN TEMPS RÉEL", desc: "Position visible." }, { title: "HAYON ÉLÉVATEUR", desc: "Déchargement tecnico." }]
@@ -296,6 +296,7 @@
             const [isHoveringInteractions, setIsHoveringInteractions] = useState(false);
             const [isMuted, setIsMuted] = useState(true);
             
+            // STATI REVEAL
             const [welcomeStage, setWelcomeStage] = useState('loading');
             const [loadingProgress, setLoadingProgress] = useState(0);
 
@@ -526,7 +527,9 @@
                                                 style={{ width: `${loadingProgress}%` }}
                                             ></div>
                                         </div>
-                                        <p className="text-[10px] font-black tracking-[0.4em] uppercase text-white/70">{t.reveal.loading}</p>
+                                        <p className="text-[10px] font-black tracking-[0.4em] uppercase text-white/70">
+                                            {t.reveal.loading}
+                                        </p>
                                     </div>
                                 ) : (
                                     <button 
