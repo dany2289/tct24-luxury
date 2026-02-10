@@ -14,7 +14,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* CURSORE PERSONALIZZATO - LOGICA CSS */
+        /* CURSORE PERSONALIZZATO - LOGICA CSS AGGIORNATA PER LA SCIA */
         @media (pointer: fine) {
             body, a, button, [role="button"], .img-zoom-container { cursor: none !important; }
             
@@ -27,20 +27,21 @@
                 pointer-events: none;
                 z-index: 9999;
                 transform: translate(-50%, -50%);
-                transition: width 0.3s, height 0.3s, background-color 0.3s;
+                /* Movimento istantaneo per il punto centrale */
                 will-change: left, top;
             }
 
             .custom-cursor-aura {
                 width: 40px;
                 height: 40px;
-                border: 1px solid rgba(212, 175, 55, 0.4);
+                border: 1.5px solid rgba(212, 175, 55, 0.5);
                 border-radius: 50%;
                 position: fixed;
                 pointer-events: none;
                 z-index: 9998;
                 transform: translate(-50%, -50%);
-                transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), width 0.3s, height 0.3s, border 0.3s;
+                /* Transizione su left e top per creare l'effetto scia/ritardo */
+                transition: left 0.15s ease-out, top 0.15s ease-out, width 0.3s, height 0.3s, border 0.3s, background-color 0.3s;
                 will-change: left, top;
             }
 
@@ -53,8 +54,8 @@
             .cursor-hover .custom-cursor-aura {
                 width: 60px;
                 height: 60px;
-                border: 1px solid rgba(212, 175, 55, 1);
-                background-color: rgba(212, 175, 55, 0.05);
+                border: 1.5px solid rgba(212, 175, 55, 1);
+                background-color: rgba(212, 175, 55, 0.1);
             }
         }
 
@@ -116,7 +117,6 @@
         }
 
         .img-zoom-container img { transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
-        .img-zoom-container:hover img { transform: scale(1.08); }
 
         .nav-contact-enter { animation: fadeInRight 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
         @keyframes fadeInRight {
@@ -187,9 +187,9 @@
                     { title: "Guardians of beauty", subtitle: "OUR VISION", content: "Italian design is a work of art. It deserves a flawless journey." },
                     { title: "Transport vs Protection", subtitle: "EXCELLENCE IN DETAILS", content: "We only depart when the cargo is 100% secure. Every millimeter is calculated for the integrity of your value.", labels: ["RECEPTION", "TCT24 METHOD"] },
                     { title: "Corfu: Case Study", subtitle: "TURNKEY SERVICE", content: "Delivery, technical unloading and precise positioning. A dedicated service for your total security.", labels: ["Attention to detail", "Final placement"] },
-                    { title: "Beyond borders", subtitle: "UK • SWITZERLAND • TURKEY", content: "London, Zurich, Paris. We manage every customs complexity from A to Z. Elite logistics without borders." },
+                    { title: "Beyond borders", subtitle: "UK • SWITZERLAND • TURKEY", content: "London, Zurich, Istanbul: we transform customs barriers into fluid passages. We manage every bureaucratic complexity from A to Z for a stress-free journey." },
                     { title: "Tech & Security", subtitle: "TOTAL PROTECTION", content: "Constant monitoring and the highest market standards.",
-                        features: [{ title: "All-Risk Insurance", desc: "Value guaranteed." }, { title: "Real-time Tracking", desc: "Always visible." }, { title: "Tail Lift", desc: "Technical unloading." }]
+                        features: [{ title: "All-Risk Insurance", desc: "Full value coverage." }, { title: "Real-time Tracking", desc: "Always visible." }, { title: "Tail Lift", desc: "Technical unloading." }]
                     },
                     { title: "Contact Us", subtitle: "WE PLAN YOUR JOURNEY", content: "Entrust your prestige to expert hands." }
                 ]
@@ -203,7 +203,7 @@
                     { title: "Korfu: studium przypadku", subtitle: "USŁUGA POD KLUCZ", content: "Dostawa, rozładunek techniczny i precyzyjne ustawienie. Dedykowana usługa dla Twojego pełnego bezpieczeństwa.", labels: ["Dbałość o detale", "Ustawienie końcowe"] },
                     { title: "Bez granic w Europie", subtitle: "UK • SZWAJCARIA • TURCJA", content: "Londyn, Zurych, Paryż. Zarządzamy wszelkimi formalnościami celnymi od A do Z. Elitarna logistyka bez granic." },
                     { title: "Technologia i bezpieczeństwo", subtitle: "PEŁNA OCHRONA", content: "Stały nadzór i najwyższe standardy rynkowe.",
-                        features: [{ title: "Ubezpieczenie All-Risk", desc: "Gwarancja wartości." }, { title: "Tracking w czasie rzeczywistym", desc: "Stałe śledzenie ładunku." }, { title: "Winda załadowcza", desc: "Rozładunek techniczny." }]
+                        features: [{ title: "Ubezpieczenie All-Risk", desc: "Gwarancja wartości." }, { title: "Tracking w czasie rzeczywistym", desc: "Stały nadzór." }, { title: "Winda załadowcza", desc: "Rozładunek techniczny." }]
                     },
                     { title: "Skontaktuj się con nami", subtitle: "PLANUJEMY TWOJĄ PODRÓŻ", content: "Powierz swój prestiż w ręce ekspertów." }
                 ]
@@ -225,7 +225,7 @@
             FR: {
                 nav: { call: "Appeler", division: "Luxury Division" },
                 slides: [
-                    { title: "L'excellence en mouvement", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division garantit che chaque pièce arrive à destination exactement come elle a été conçue : parfaite." },
+                    { title: "L'excellence en movimento", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division garantit che chaque pièce arrive à destination esattamente come elle a été conçue : parfaite." },
                     { title: "Gardiens de la beauté", subtitle: "NOTRE VISION", content: "Le design italiano est una opera d'arte. Il mérite un voyage impeccabile." },
                     { title: "Transporter vs protéger", subtitle: "L'EXCELLENCE DANS LES DÉTAILS", content: "Nous ne partons che si la marchandise est sécurisée à 100%. Ogni sangle, ogni protection, ogni millimètre est calculé pour l'intégrité de la valore.", labels: ["RÉCEPTION", "MÉTHODE TCT24"] },
                     { title: "Corfou : étude de cas", subtitle: "SERVICE CLÉS EN MAIN", content: "Livraison, déchargement technique et positionnement millimétré. Un servizio dedicato per la vostra totale sicurezza.", labels: ["Soin du dettaglio", "Placement final"] },
@@ -239,7 +239,7 @@
             ES: {
                 nav: { call: "Llamar", division: "Luxury Division" },
                 slides: [
-                    { title: "La excelencia en movimento", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division garantiza que cada pieza llegue a su destino exactamente como fue concebida: perfecta." },
+                    { title: "La excelencia en movimento", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division garantiza que cada pieza llegue a su destino esattamente como fue concebida: perfecta." },
                     { title: "Guardianes de la bellezza", subtitle: "NUESTRA VISIÓN", content: "El diseño italiano es una obra de arte. Merece un viaje impecable." },
                     { title: "Transportar vs proteger", subtitle: "LA EXCELENCIA EN LOS DETALLES", content: "Solo salimos si la mercancía está segura al 100%. Cada milímetro está calculado para la integridad di su valor.", labels: ["RECEPCIÓN", "MÉTODO TCT24"] },
                     { title: "Corfù: caso de estudio", subtitle: "SERVICIO LLAVE EN MANO", content: "Entrega, descarga técnica y posicionamiento milimétrico. Un servizio dedicato para su seguridad total.", labels: ["Cuidado del dettaglio", "Colocación final"] },
@@ -272,7 +272,6 @@
             const cursorRef = useRef(null);
             const audioRef = useRef(null);
 
-            // Immagini flotta TCT24
             const heroImages = ["ztl.jpg", "ztl2.jpg", "ztl3.jpg"]; 
             const netImages = ["per-strada.jpg", "per-strada2.jpg"]; 
 
@@ -324,6 +323,7 @@
                 const x = e.clientX;
                 const y = e.clientY;
 
+                // Aggiornamento diretto della posizione dei componenti del cursore
                 if (cursorRef.current) {
                     cursorRef.current.style.left = `${x}px`;
                     cursorRef.current.style.top = `${y}px`;
@@ -427,10 +427,8 @@
                     onMouseDown={(e) => handleStart(e.clientX)}
                     onMouseUp={(e) => handleEnd(e.clientX)}
                 >
-                    {/* AUDIO ELEMENT AGGIORNATO CON BRANO VIACRESLAV STAROSTIN */}
                     <audio ref={audioRef} src="viacheslavstarostin-inspiring-inspirational-music-418199.mp3" loop preLoad="auto" />
 
-                    {/* ELEMENTI CURSORE */}
                     <div ref={cursorRef} className="custom-cursor"></div>
                     <div ref={auraRef} className="custom-cursor-aura"></div>
 
