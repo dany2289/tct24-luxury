@@ -190,22 +190,22 @@
         const translations = {
             IT: {
                 nav: { call: "Chiama", division: "Luxury Division" },
-                reveal: { enter: "Entra nell'Eccellenza" },
+                reveal: { loading: "Stiamo curando ogni dettaglio.", enter: "Scopri la nostra visione." },
                 slides: [
                     { title: "Eccellenza in ogni passaggio", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division. La perfezione arriva a destinazione. Sempre." },
                     { title: "Siamo i custodi della bellezza", subtitle: "LA NOSTRA VISIONE", content: "Il design italiano è un'opera d'arte. Merita un viaggio impeccabile." },
                     { title: "Trasportare vs proteggere", subtitle: "L'ECCELLENZA NEI DETTAGLI", content: "Partiamo solo se la merce è sicura al 100%. Ogni millimetro è calcolato per l'integrità del valore affidatoci.", labels: ["STATO RICEZIONE", "METODO TCT24"] },
-                    { title: "Corfù:\nCase Study", subtitle: "SERVIZIO CHIAVI IN MANO", content: "Consegna, scarico tecnico e posizionamento millimetrico. Un servizio dedicato per la vostra totale sicurezza.", labels: ["Cura del dettaglio", "Posizionamento finale"] },
-                    { title: "Senza confini\nin Europa", subtitle: "UK • SVIZZERA • TURCHIA", content: "Londra, Zurigo, Parigi. Gestiamo ogni complessità doganale dalla A alla Z. Logistica d'élite senza confini.", labels: ["Tratte internazionali", "Precisione geografica"] },
-                    { title: "Tecnologia e sicurezza", subtitle: "PROTEZIONE TOTALE", content: "Monitoraggio costante e i più alti standard di mercato.",
-                        features: [{ title: "Assicurazione All-Risk", desc: "Valore garantito." }, { title: "Tracking real-time", desc: "Sempre visibile." }, { title: "Sponda idraulica", desc: "Scarico tecnico." }]
+                    { title: "Corfù:\nCase Study", subtitle: "SERVIZIO CHIAVI IN MANO", content: "Consegna, scarico tecnica e posizionamento millimetrico. Un servizio dedicato per la vostra sicurezza total.", labels: ["Cuidado del dettaglio", "Colocación final"] },
+                    { title: "Senza confini\nin Europa", subtitle: "UK • SVIZZERA • TURCHIA", content: "Londres, Zúrich, París. Gestionamos cada complejidad aduanera de la A a la Z. Logística de élite sin fronteras.", labels: ["Tratte internazionali", "Precisione geografica"] },
+                    { title: "Tecnologia e sicurezza", subtitle: "PROTEZIONE TOTALE", content: "Monitoreo costante e i più alti standard del mercato.",
+                        features: [{ title: "Seguro All-Risk", desc: "Valor garantizado." }, { title: "Seguimiento en tiempo real", desc: "Posición constante." }, { title: "Plataforma elevadora", desc: "Descarga técnica." }]
                     },
-                    { title: "Contattaci", subtitle: "PROGETTIAMO IL TUO VIAGGIO", content: "Affida il tuo prestigio a mani esperte." }
+                    { title: "Contattaci", subtitle: "PLANIFICAMOS SU VIAJE", content: "Confíe su prestigio a manos expertas." }
                 ]
             },
             EN: {
                 nav: { call: "Call", division: "Luxury Division" },
-                reveal: { enter: "Enter Excellence" },
+                reveal: { loading: "Crafting every detail...", enter: "Discover our vision." },
                 slides: [
                     { title: "Excellence in every step", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division. Perfection arrives at its destination. Always." },
                     { title: "Guardians of beauty", subtitle: "OUR VISION", content: "Italian design is a work of art. It deserves a flawless journey." },
@@ -220,7 +220,7 @@
             },
             PL: {
                 nav: { call: "Zadzwoń", division: "Luxury Division" },
-                reveal: { enter: "Wstąp do doskonałości" },
+                reveal: { loading: "Dbamy o każdy detal...", enter: "Poznaj naszą wizję." },
                 slides: [
                     { title: "Doskonałość w każdym kroku", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division. Perfekcja dociera do celu. Zawsze." },
                     { title: "Nasza wizja", subtitle: "STRAŻNICY PIĘKNA", content: "Włoski design to dzieło sztuki. Zasługuje na nieskazitelną podróż." },
@@ -235,7 +235,7 @@
             },
             DE: {
                 nav: { call: "Anrufen", division: "Luxury Division" },
-                reveal: { enter: "Exzellenz erleben" },
+                reveal: { loading: "Wir achten auf jedes Detail...", enter: "Entdecken Sie unsere Vision." },
                 slides: [
                     { title: "Exzellenz bei jedem Schritt", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division. Perfektion kommt ans Ziel. Immer." },
                     { title: "Wir sind die Hüter della Schönheit", subtitle: "UNSERE VISION", content: "Italienisches Design ist ein Kunstwerk. Es verdient eine makellose Reise." },
@@ -250,7 +250,7 @@
             },
             FR: {
                 nav: { call: "Appeler", division: "Luxury Division" },
-                reveal: { enter: "Entrez dans l'excellence" },
+                reveal: { loading: "Nous soignons chaque détail...", enter: "Découvrez notre vision." },
                 slides: [
                     { title: "L'excellence à chaque étape", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division. La perfection arrive à destination. Toujours." },
                     { title: "Gardiens de la beauté", subtitle: "NOTRE VISION", content: "Le design italiano est una opera d'arte. Il mérite un voyage impeccabile." },
@@ -265,13 +265,13 @@
             },
             ES: {
                 nav: { call: "Llamar", division: "Luxury Division" },
-                reveal: { enter: "Entre en la excelencia" },
+                reveal: { loading: "Cuidamos cada detalle...", enter: "Descubra nuestra visión." },
                 slides: [
                     { title: "Excelencia en cada paso", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division. La perfección llega a su destino. Siempre." },
                     { title: "Guardianes de la bellezza", subtitle: "NUESTRA VISIÓN", content: "El diseño italiano è un'opera d'arte. Merita un viaggio impeccabile." },
                     { title: "Transportar vs proteger", subtitle: "LA EXCELENCIA EN LOS DETALLES", content: "Solo salimos si la mercancía está segura al 100%. Cada milímetro está calculado para la integridad di su valor.", labels: ["RECEPCIÓN", "MÉTODO TCT24"] },
                     { title: "Corfù:\ncaso de estudio", subtitle: "SERVICIO LLAVE EN MANO", content: "Entrega, descarga tecnica y posicionamiento millimétrico. Un servizio dedicato para su sicurezza total.", labels: ["Cuidado del dettaglio", "Colocación final"] },
-                    { title: "Sin fronteras\nen Europa", subtitle: "UK • SUIZA • TURQUÍA", content: "Londres, Zúrich, París. Gestionamos cada complejidad aduanera de la A a la Z. Logística de élite sin fronteras." },
+                    { title: "Sin fronteras\nen Europa", subtitle: "UK • SUIZA • TURQUÍA", content: "Londres, Zúrich, París. Gestionamos cada complejidad aduanera de la una a la Z. Logística de élite sin fronteras." },
                     { title: "Tecnología y sicurezza", subtitle: "PROTECCIÓN TOTAL", content: "Monitoreo costante e i più alti standard del mercato.",
                         features: [{ title: "Seguro All-Risk", desc: "Valor garantizado." }, { title: "Seguimiento en tiempo real", desc: "Posición constante." }, { title: "Plataforma elevadora", desc: "Descarga técnica." }]
                     },
@@ -296,6 +296,7 @@
             const [isHoveringInteractions, setIsHoveringInteractions] = useState(false);
             const [isMuted, setIsMuted] = useState(true);
             
+            // STATI REVEAL
             const [welcomeStage, setWelcomeStage] = useState('loading');
             const [loadingProgress, setLoadingProgress] = useState(0);
 
@@ -527,7 +528,9 @@
                                                 style={{ width: `${loadingProgress}%` }}
                                             ></div>
                                         </div>
-                                        <p className="text-[10px] font-black tracking-[0.4em] uppercase text-white/70">Definendo l'eccellenza...</p>
+                                        <p className="text-[10px] font-black tracking-[0.4em] uppercase text-white/70">
+                                            {t.reveal.loading}
+                                        </p>
                                     </div>
                                 ) : (
                                     <button 
