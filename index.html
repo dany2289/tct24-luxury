@@ -64,6 +64,12 @@
         .border-gold { border-color: #D4AF37; }
         .bg-gold { background-color: #D4AF37; }
         
+        /* COLOR GRADING DIGITALE: Tono desaturato, contrastato e freddo */
+        .luxury-grading {
+            filter: saturate(0.75) contrast(1.1) brightness(0.9) sepia(0.05) hue-rotate(180deg);
+            transition: filter 1s ease;
+        }
+
         .parallax-layer-1 { 
             animation: driftIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
             transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -281,7 +287,6 @@
             const [isHoveringInteractions, setIsHoveringInteractions] = useState(false);
             const [isMuted, setIsMuted] = useState(true);
             
-            // STATI REVEAL
             const [welcomeStage, setWelcomeStage] = useState('loading');
             const [loadingProgress, setLoadingProgress] = useState(0);
 
@@ -459,11 +464,15 @@
             const slideData = slidesContent[currentSlide];
             const slideText = t.slides[currentSlide];
 
-            const handleStart = (clientX) => { touchStartX.current = clientX; };
-            const handleEnd = (clientX) => {
+            const handleTouchStart = (e) => {
+                touchStartX.current = e.targetTouches[0].clientX;
+            };
+
+            const handleTouchEnd = (e) => {
                 if (welcomeStage !== 'entered') return;
-                if (touchStartX.current === null) return;
-                const distance = touchStartX.current - clientX;
+                if (!touchStartX.current) return;
+                const touchEndX = e.changedTouches[0].clientX;
+                const distance = touchStartX.current - touchEndX;
                 if (Math.abs(distance) > minSwipeDistance) {
                     if (distance > 0) next(); else prev();
                 }
@@ -476,10 +485,17 @@
             return (
                 <div 
                     className={`min-h-screen flex flex-col transition-colors duration-500 ${slideData.bg} ${isHoveringInteractions ? 'cursor-hover' : ''}`}
-                    onTouchStart={(e) => handleStart(e.targetTouches[0].clientX)}
-                    onTouchEnd={(e) => handleEnd(e.changedTouches[0].clientX)}
-                    onMouseDown={(e) => handleStart(e.clientX)}
-                    onMouseUp={(e) => handleEnd(e.clientX)}
+                    onTouchStart={handleTouchStart}
+                    onTouchEnd={handleTouchEnd}
+                    onMouseDown={(e) => { if (welcomeStage === 'entered') touchStartX.current = e.clientX; }}
+                    onMouseUp={(e) => {
+                        if (welcomeStage !== 'entered' || !touchStartX.current) return;
+                        const distance = touchStartX.current - e.clientX;
+                        if (Math.abs(distance) > minSwipeDistance) {
+                            if (distance > 0) next(); else prev();
+                        }
+                        touchStartX.current = null;
+                    }}
                 >
                     <audio ref={audioRef} src="viacheslavstarostin-inspiring-inspirational-music-418199.mp3" loop preLoad="auto" />
                     <audio ref={swooshRef} src="universfield-swoosh-024-454862.mp3" preLoad="auto" />
@@ -576,8 +592,8 @@
                                 <div 
                                     className="h-full bg-gold transition-all duration-75 ease-linear"
                                     style={{ 
-                                        width: (currentSlide === 0 ? heroIsClearing : netIsClearing) ? (100 - (currentSlide === 0 ? heroProgress : netProgress)) + '%' : (currentSlide === 0 ? heroProgress : netProgress) + '%',
-                                        marginLeft: (currentSlide === 0 ? heroIsClearing : netIsClearing) ? (currentSlide === 0 ? heroProgress : netProgress) + '%' : '0'
+                                        width: (currentSlide === 0 ? heroProgress : netProgress) + '%',
+                                        marginLeft: 0
                                     }}
                                 ></div>
                             </div>
@@ -592,14 +608,14 @@
                             >
                                 {slideData.id === "copertina" ? (
                                     heroImages.map((img, idx) => (
-                                        <img key={idx} src={img} alt="Hero" className={`absolute inset-0 w-full h-full object-cover animate-ken-burns transition-opacity duration-1000 ${heroIndex === idx ? 'opacity-100' : 'opacity-0'}`} />
+                                        <img key={idx} src={img} alt="Hero" className={`absolute inset-0 w-full h-full object-cover animate-ken-burns luxury-grading transition-opacity duration-1000 ${heroIndex === idx ? 'opacity-100' : 'opacity-0'}`} />
                                     ))
                                 ) : slideData.id === "network" ? (
                                     netImages.map((img, idx) => (
-                                        <img key={idx} src={img} alt="Network" className={`absolute inset-0 w-full h-full object-cover animate-ken-burns transition-opacity duration-1000 ${netIndex === idx ? 'opacity-100' : 'opacity-0'}`} />
+                                        <img key={idx} src={img} alt="Network" className={`absolute inset-0 w-full h-full object-cover animate-ken-burns luxury-grading transition-opacity duration-1000 ${netIndex === idx ? 'opacity-100' : 'opacity-0'}`} />
                                     ))
                                 ) : (
-                                    <img src={slideData.image} alt="Background" className="w-full h-full object-cover animate-ken-burns" />
+                                    <img src={slideData.image} alt="Background" className="w-full h-full object-cover animate-ken-burns luxury-grading" />
                                 )}
                                 <div className={`absolute inset-0 ${slideData.isCentered ? 'img-overlay-centered' : 'img-overlay'}`}></div>
                             </div>
@@ -674,7 +690,7 @@
                                             <div className="flex flex-col gap-4 w-full">
                                                 {slideData.images.map((img, idx) => (
                                                     <div key={idx} className={`relative rounded-lg overflow-hidden shadow-xl border border-white/10 img-zoom-container parallax-layer-${idx+1} ${idx === 1 ? 'md:-translate-x-8 border-2 border-gold shadow-2xl' : ''}`}>
-                                                        <img src={img} alt="Detail" className="w-full h-48 md:h-64 object-cover" />
+                                                        <img src={img} alt="Detail" className="w-full h-48 md:h-64 object-cover luxury-grading" />
                                                         <div className={`absolute top-4 left-4 text-white text-[9px] font-bold px-3 py-1 rounded-full uppercase tracking-widest ${idx === 1 ? 'bg-gold' : 'bg-black/70'}`}>
                                                             {slideText.labels[idx]}
                                                         </div>
@@ -683,7 +699,7 @@
                                             </div>
                                         ) : slideData.image ? (
                                             <div className="rounded-xl overflow-hidden shadow-2xl border border-white/5 img-zoom-container w-full parallax-layer-2">
-                                                <img src={slideData.image} alt="Visual" className="w-full h-64 md:h-[500px] object-cover" />
+                                                <img src={slideData.image} alt="Visual" className="w-full h-64 md:h-[500px] object-cover luxury-grading" />
                                             </div>
                                         ) : null}
                                     </div>
