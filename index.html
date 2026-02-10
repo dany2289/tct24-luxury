@@ -14,6 +14,48 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        /* CURSORE PERSONALIZZATO - LOGICA CSS */
+        @media (pointer: fine) {
+            body, a, button, [role="button"] { cursor: none !important; }
+            
+            .custom-cursor {
+                width: 8px;
+                height: 8px;
+                background-color: #D4AF37;
+                border-radius: 50%;
+                position: fixed;
+                pointer-events: none;
+                z-index: 9999;
+                transform: translate(-50%, -50%);
+                transition: width 0.3s, height 0.3s, background-color 0.3s;
+            }
+
+            .custom-cursor-aura {
+                width: 40px;
+                height: 40px;
+                border: 1px solid rgba(212, 175, 55, 0.4);
+                border-radius: 50%;
+                position: fixed;
+                pointer-events: none;
+                z-index: 9998;
+                transform: translate(-50%, -50%);
+                transition: transform 0.15s ease-out, width 0.3s, height 0.3s, border 0.3s;
+            }
+
+            .cursor-hover .custom-cursor {
+                width: 4px;
+                height: 4px;
+                background-color: #ffffff;
+            }
+
+            .cursor-hover .custom-cursor-aura {
+                width: 60px;
+                height: 60px;
+                border: 1px solid rgba(212, 175, 55, 1);
+                background-color: rgba(212, 175, 55, 0.05);
+            }
+        }
+
         body { font-family: 'Inter', sans-serif; overflow-x: hidden; user-select: none; background-color: #0f172a; }
         .font-serif { font-family: 'Playfair Display', serif; }
         .bg-ebonite { background-color: #0f172a; }
@@ -50,9 +92,7 @@
             background: radial-gradient(circle, rgba(15, 23, 42, 0.4) 0%, rgba(15, 23, 42, 0.9) 100%);
         }
         
-        .video-grain {
-            filter: brightness(0.6) contrast(1.2) saturate(0.8);
-        }
+        .video-grain { filter: brightness(0.6) contrast(1.2) saturate(0.8); }
 
         .lang-dropdown {
             background: rgba(15, 23, 42, 0.98);
@@ -60,24 +100,16 @@
             z-index: 100;
         }
 
-        .img-zoom-container img {
-            transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-        .img-zoom-container:hover img {
-            transform: scale(1.08);
-        }
+        .img-zoom-container img { transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .img-zoom-container:hover img { transform: scale(1.08); }
 
-        .nav-contact-enter {
-            animation: fadeInRight 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-        }
+        .nav-contact-enter { animation: fadeInRight 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
         @keyframes fadeInRight {
             from { opacity: 0; transform: translateX(20px); }
             to { opacity: 1; transform: translateX(0); }
         }
 
-        .main-content-transition {
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        .main-content-transition { transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
     </style>
 </head>
 <body class="bg-ebonite">
@@ -129,7 +161,7 @@
                     { title: "Guardians of beauty", subtitle: "OUR VISION", content: "Italian design is a work of art. It deserves a flawless journey." },
                     { title: "Transport vs Protection", subtitle: "EXCELLENCE IN DETAILS", content: "We only depart when the cargo is 100% secure. Every millimeter is calculated for the integrity of your value.", labels: ["RECEPTION", "TCT24 METHOD"] },
                     { title: "Corfu: Case Study", subtitle: "TURNKEY SERVICE", content: "Delivery, technical unloading and precise positioning. A dedicated service for your total security.", labels: ["Attention to detail", "Final placement"] },
-                    { title: "Beyond borders", subtitle: "UK • SWITZERLAND • TURKEY", content: "London, Zurich, Paris. We manage every customs complexity from A to Z. Elite logistics without borders." },
+                    { title: "Without Borders in Europe", subtitle: "UK • SWITZERLAND • TURKEY", content: "London, Zurich, Istanbul: we transform customs barriers into fluid passages. We manage every bureaucratic complexity from A to Z for a stress-free journey." },
                     { title: "Tech & Security", subtitle: "TOTAL PROTECTION", content: "Constant monitoring and the highest market standards.",
                         features: [{ title: "All-Risk Insurance", desc: "Value guaranteed." }, { title: "Real-time Tracking", desc: "Always visible." }, { title: "Tail Lift", desc: "Technical unloading." }]
                     },
@@ -139,11 +171,11 @@
             PL: {
                 nav: { call: "Zadzwoń", division: "Luxury Division" },
                 slides: [
-                    { title: "Perfekcja w ruchu", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division gwarantuje, że każdy element dotrze do celu dokładnie tak, jak został zaprojektowany: idealny." },
-                    { title: "Jesteśmy strażnikami piękna", subtitle: "NASZA WIZJA", content: "Włoski design to dzieło sztuki. Zasługuje na nieskazitelną podróż." },
+                    { title: "Perfekcja w ruchu", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division gwarantuje, że każdy element dotrze do celu dokładnie tak, jak został zaprojektowany: idealnie." },
+                    { title: "Nasza wizja", subtitle: "STRAŻNICY PIĘKNA", content: "Włoski design to dzieło sztuki. Zasługuje na nieskazitelną podróż." },
                     { title: "Transport vs ochrona", subtitle: "PERFEKCJA W DETALACH", content: "Ruszamy tylko wtedy, gdy ładunek jest w 100% bezpieczny. Każdy milimetr jest wyliczony dla ochrony Twoich dóbr.", labels: ["STAN PRZYJĘCIA", "METODA TCT24"] },
                     { title: "Korfu: studium przypadku", subtitle: "USŁUGA POD KLUCZ", content: "Dostawa, rozładunek techniczny i precyzyjne ustawienie. Dedykowana usługa dla Twojego pełnego bezpieczeństwa.", labels: ["Dbałość o detale", "Ustawienie końcowe"] },
-                    { title: "Ponad granicami", subtitle: "UK • SZWAJCARIA • TURCJA", content: "Londyn, Zurych, Paryż. Zarządzamy wszelkimi formalnościami celnymi od A do Z. Elitarna logistyka bez granic." },
+                    { title: "Bez granic w Europie", subtitle: "UK • SZWAJCARIA • TURCJA", content: "Londyn, Zurych, Paryż. Zarządzamy wszelkimi formalnościami celnymi od A do Z. Elitarna logistyka bez granic." },
                     { title: "Technologia i bezpieczeństwo", subtitle: "PEŁNA OCHRONA", content: "Stały nadzór i najwyższe standardy rynkowe.",
                         features: [{ title: "Ubezpieczenie All-Risk", desc: "Gwarancja wartości." }, { title: "Tracking w czasie rzeczywistym", desc: "Stały nadzór." }, { title: "Winda załadowcza", desc: "Rozładunek techniczny." }]
                     },
@@ -154,7 +186,7 @@
                 nav: { call: "Anrufen", division: "Luxury Division" },
                 slides: [
                     { title: "Exzellenz in Bewegung", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division garantiert, dass jedes Stück genau so an seinem Bestimmungsort ankommt, wie es konzipiert wurde: perfekt." },
-                    { title: "Wir sind die Hüter der Schönheit", subtitle: "UNSERE VISION", content: "Italienisches Design ist ein Kunstwerk. Es verdient eine makellose Reise." },
+                    { title: "Wir sind die Hüter della Schönheit", subtitle: "UNSERE VISION", content: "Italienisches Design ist ein Kunstwerk. Es verdient eine makellose Reise." },
                     { title: "Transport vs. Schutz", subtitle: "EXZELLENZ IM DETAIL", content: "Wir fahren erst los, wenn die Ladung zu 100 % gesichert ist. Jeder Millimeter ist auf den Wert Ihres Gutes berechnet.", labels: ["ÜBERNAHME", "TCT24 METHODE"] },
                     { title: "Korfu: Fallstudie", subtitle: "SCHLÜSSELFERTIGER SERVICE", content: "Lieferung, technische Entladung und präzise Positionierung. Ein engagierter Service für Ihre absolute Sicherheit.", labels: ["Liebe zum Detail", "Platzierung"] },
                     { title: "Grenzenlos in Europa", subtitle: "UK • SCHWEIZ • TÜRKEI", content: "London, Zürich, Paris. Wir erledigen alle Zollformalitäten von A bis Z. Elite-Logistik ohne Grenzen." },
@@ -182,9 +214,9 @@
                 nav: { call: "Llamar", division: "Luxury Division" },
                 slides: [
                     { title: "La excelencia en movimiento", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division garantiza que cada pieza llegue a su destino exactamente como fue concebida: perfecta." },
-                    { title: "Guardianes de la belleza", subtitle: "NUESTRA VISIÓN", content: "El diseño italiano es una obra de arte. Merece un viaje impecable." },
+                    { title: "Guardianes de la bellezza", subtitle: "NUESTRA VISIÓN", content: "El diseño italiano es una obra de arte. Merece un viaje impecable." },
                     { title: "Transportar vs proteger", subtitle: "LA EXCELENCIA EN LOS DETALLES", content: "Solo salimos si la mercancía está segura al 100%. Cada milímetro está calculado para la integridad de su valor.", labels: ["RECEPCIÓN", "MÉTODO TCT24"] },
-                    { title: "Corfú: caso de estudio", subtitle: "SERVICIO LLAVE EN MANO", content: "Entrega, descarga técnica y posicionamiento milimétrico. Un servicio dedicado para su seguridad total.", labels: ["Cuidado del detalle", "Colocación final"] },
+                    { title: "Corfù: caso de estudio", subtitle: "SERVICIO LLAVE EN MANO", content: "Entrega, descarga técnica y posicionamiento milimétrico. Un servicio dedicado para su seguridad total.", labels: ["Cuidado del dettaglio", "Colocación final"] },
                     { title: "Sin fronteras", subtitle: "UK • SUIZA • TURQUÍA", content: "Londres, Zúrich, París. Gestionamos cada complejidad aduanera de la A a la Z. Logística de élite sin fronteras." },
                     { title: "Tecnología y seguridad", subtitle: "PROTECCIÓN TOTAL", content: "Monitoreo constante y los más altos estándares del mercado.",
                         features: [{ title: "Seguro All-Risk", desc: "Valor garantizado." }, { title: "Seguimiento en tiempo real", desc: "Posición constante." }, { title: "Plataforma elevadora", desc: "Descarga técnica." }]
@@ -207,7 +239,12 @@
             const [lang, setLang] = useState(getInitialLanguage());
             const [isLangOpen, setIsLangOpen] = useState(false);
             const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+            const [isHoveringInteractions, setIsHoveringInteractions] = useState(false);
             
+            // Per il cursore scia (Aura)
+            const auraRef = useRef(null);
+            const cursorRef = useRef(null);
+
             const heroImages = ["ztl.jpg", "ztl2.jpg", "ztl3.jpg"]; 
             const netImages = ["per-strada.jpg", "per-strada2.jpg"]; 
 
@@ -242,11 +279,36 @@
             const next = () => setCurrentSlide((prev) => (prev + 1) % slidesContent.length);
             const prev = () => setCurrentSlide((prev) => (prev - 1 + slidesContent.length) % slidesContent.length);
 
-            const handleMouseMove = (e) => {
-                const x = (e.clientX / window.innerWidth) - 0.5;
-                const y = (e.clientY / window.innerHeight) - 0.5;
-                setMousePos({ x, y });
+            // LOGICA CURSORE E PARALLASSE
+            const handleGlobalMouseMove = (e) => {
+                const x = e.clientX;
+                const y = e.clientY;
+
+                // Sposta i div fisicamente per il cursore
+                if (cursorRef.current) {
+                    cursorRef.current.style.left = `${x}px`;
+                    cursorRef.current.style.top = `${y}px`;
+                }
+                if (auraRef.current) {
+                    auraRef.current.style.left = `${x}px`;
+                    auraRef.current.style.top = `${y}px`;
+                }
+
+                // Calcola parallasse per le slide
+                const px = (x / window.innerWidth) - 0.5;
+                const py = (y / window.innerHeight) - 0.5;
+                setMousePos({ x: px, y: py });
+
+                // Check se siamo sopra un elemento interattivo
+                const target = e.target;
+                const isInteracting = target.closest('a') || target.closest('button') || target.closest('.img-zoom-container');
+                setIsHoveringInteractions(!!isInteracting);
             };
+
+            useEffect(() => {
+                window.addEventListener('mousemove', handleGlobalMouseMove);
+                return () => window.removeEventListener('mousemove', handleGlobalMouseMove);
+            }, []);
 
             useEffect(() => {
                 const handleKeyDown = (e) => {
@@ -306,13 +368,16 @@
 
             return (
                 <div 
-                    className={`min-h-screen flex flex-col transition-colors duration-500 ${slideData.bg}`}
-                    onMouseMove={handleMouseMove}
+                    className={`min-h-screen flex flex-col transition-colors duration-500 ${slideData.bg} ${isHoveringInteractions ? 'cursor-hover' : ''}`}
                     onTouchStart={(e) => handleStart(e.targetTouches[0].clientX)}
                     onTouchEnd={(e) => handleEnd(e.changedTouches[0].clientX)}
                     onMouseDown={(e) => handleStart(e.clientX)}
                     onMouseUp={(e) => handleEnd(e.clientX)}
                 >
+                    {/* ELEMENTI CURSORE */}
+                    <div ref={cursorRef} className="custom-cursor"></div>
+                    <div ref={auraRef} className="custom-cursor-aura"></div>
+
                     <nav className="bg-ebonite border-b border-slate-800 px-4 md:px-6 py-4 flex justify-between items-center sticky top-0 z-50 shadow-2xl relative">
                         <div className="flex items-center gap-4">
                             <img src="logo.svg" alt="Logo TCT24" className="h-10 md:h-14 w-auto object-contain cursor-pointer" onClick={() => setCurrentSlide(0)} />
