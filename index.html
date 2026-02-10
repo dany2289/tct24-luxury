@@ -64,9 +64,10 @@
         .border-gold { border-color: #D4AF37; }
         .bg-gold { background-color: #D4AF37; }
         
-        /* COLOR GRADING DIGITALE */
+        /* COLOR GRADING DIGITALE - RIPRISTINATO AI COLORI NATURALI */
         .luxury-grading {
-            filter: saturate(0.75) contrast(1.1) brightness(0.9) sepia(0.05) hue-rotate(180deg);
+            /* Rimosso hue-rotate e sepia per rispettare i colori originali (rosso, bianco, marmo) */
+            filter: contrast(1.05) brightness(0.98) saturate(1.02);
             transition: filter 1s ease;
         }
 
@@ -76,7 +77,6 @@
             transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        /* Il livello 2 (Titoli) ora include l'espansione del letter-spacing */
         .parallax-layer-2 { 
             animation: driftIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards,
                        letterExpand 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; 
@@ -97,7 +97,6 @@
             to { opacity: 1; transform: translateX(0) translateY(0); }
         }
 
-        /* Nuova animazione per il "respiro" dei titoli */
         @keyframes letterExpand {
             from { letter-spacing: -0.02em; }
             to { letter-spacing: 0.02em; }
@@ -646,10 +645,10 @@
                                     <h2 className={`text-xs tracking-[0.4em] font-black uppercase parallax-layer-1 ${isDark ? 'text-gold' : 'text-slate-400'}`}>
                                         {slideText.subtitle}
                                     </h2>
-                                    <h1 className={`text-4xl md:text-7xl font-serif leading-tight parallax-layer-2 ${slideData.textColor || 'text-white'}`}>
+                                    <h1 className={`text-4xl md:text-7xl font-serif leading-tight ${slideData.textColor || 'text-white'}`}>
                                         {slideText.title}
                                     </h1>
-                                    <p className={`text-lg md:text-2xl font-light leading-relaxed italic parallax-layer-3 ${slideData.textColor || 'text-slate-300'}`}>
+                                    <p className={`text-lg md:text-2xl font-light leading-relaxed italic ${slideData.textColor || 'text-slate-300'}`}>
                                         {slideText.content}
                                     </p>
 
