@@ -14,25 +14,29 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; overflow-x: hidden; user-select: none; }
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; user-select: none; background-color: #0f172a; }
         .font-serif { font-family: 'Playfair Display', serif; }
         .bg-ebonite { background-color: #0f172a; }
         .text-gold { color: #D4AF37; }
         .border-gold { border-color: #D4AF37; }
         .bg-gold { background-color: #D4AF37; }
         
-        .slide-enter { animation: slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Animazione staggered per il parallasse in entrata */
+        .parallax-layer-1 { animation: driftIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+        .parallax-layer-2 { animation: driftIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; opacity: 0; animation-delay: 0.1s; }
+        .parallax-layer-3 { animation: driftIn 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; opacity: 0; animation-delay: 0.2s; }
+
+        @keyframes driftIn {
+            from { opacity: 0; transform: translateX(30px) translateY(10px); }
+            to { opacity: 1; transform: translateX(0) translateY(0); }
         }
 
         .animate-ken-burns {
-            animation: kenburns 20s ease-in-out infinite alternate;
+            animation: kenburns 30s ease-in-out infinite alternate;
         }
         @keyframes kenburns {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.15); }
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.2) translate(-2%, -2%); }
         }
 
         ::-webkit-scrollbar { width: 6px; }
@@ -40,11 +44,11 @@
         ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
 
         .img-overlay {
-            background: linear-gradient(to right, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.6) 40%, rgba(15, 23, 42, 0.2) 100%);
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.7) 40%, rgba(15, 23, 42, 0.3) 100%);
         }
         
         .video-grain {
-            filter: brightness(0.6) contrast(1.2) saturate(0.8) blur(1px);
+            filter: brightness(0.6) contrast(1.2) saturate(0.8);
         }
 
         .lang-dropdown {
@@ -54,18 +58,23 @@
         }
 
         .img-zoom-container img {
-            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
         .img-zoom-container:hover img {
-            transform: scale(1.1);
+            transform: scale(1.08);
         }
 
         .nav-contact-enter {
-            animation: fadeInRight 0.5s ease-out forwards;
+            animation: fadeInRight 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
         @keyframes fadeInRight {
-            from { opacity: 0; transform: translateX(10px); }
+            from { opacity: 0; transform: translateX(20px); }
             to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Smoothing della transizione tra le slide */
+        .main-content-transition {
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
     </style>
 </head>
@@ -90,7 +99,7 @@
                 Languages: <><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></>
             };
             return (
-                <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
                     {icons[name] || <circle cx="12" cy="12" r="10" />}
                 </svg>
             );
@@ -116,7 +125,7 @@
                 slides: [
                     { title: "Excellence in Motion", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division is the best guarantee for your transport: fast times, full management, assured results." },
                     { title: "Our Vision", subtitle: "GUARDIANS OF BEAUTY", content: "Italian design is a work of art. It deserves a flawless journey. TCT24 Luxury Division ensures every piece arrives exactly as it was conceived: perfect." },
-                    { title: "Transport vs Protection", subtitle: "EXCELLENCE IN DETAILS", content: "We only depart when the cargo is 100% secure. Every strap, every protection, every millimeter is calculated for the integrity of the value entrusted to us.", labels: ["CARGO RECEPTION", "TCT24 LUXURY METHOD"] },
+                    { title: "Transport vs Protection", subtitle: "EXCELLENCE IN DETAILS", content: "We only depart when the cargo is 100% secure. Every strap, every protection, every millimeter are calculated for the integrity of the value entrusted to us.", labels: ["CARGO RECEPTION", "TCT24 LUXURY METHOD"] },
                     { title: "Corfu: Case Study", subtitle: "TURNKEY SERVICE", content: "We manage every phase with precision: delivery, technical unloading, positioning, unpacking, and complete disposal of packaging. A dedicated service for your total security.", labels: ["Attention to detail", "Final placement"] },
                     { title: "Without Borders in Europe", subtitle: "UK • SWITZERLAND • TURKEY", content: "London, Zurich, Istanbul: we transform customs barriers into fluid passages. We manage every bureaucratic complexity from A to Z for a stress-free journey." },
                     { title: "Tech & Security", subtitle: "TOTAL PROTECTION", content: "We manage every shipment with the highest market standards, bespoke insurance coverage and constant journey monitoring.",
@@ -136,7 +145,7 @@
                     { title: "Technologia i bezpieczeństwo", subtitle: "PEŁNA OCHRONA", content: "Obsługujemy każdą przesyłkę według najwyższych standardów rynkowych: ubezpieczenie all-risk szyte na miarę i stały monitoring trasy.",
                         features: [{ title: "Ubezpieczenie All-Risk", desc: "Pełna ochrona wartości." }, { title: "Tracking w czasie rzeczywistym", desc: "Stałe śledzenie ładunku." }, { title: "Winda załadowcza", desc: "Ułatwiony rozładunek." }]
                     },
-                    { title: "Skontaktuj się z nami", subtitle: "PLANUJEMY TWOJĄ PODRÓŻ", content: "Powierz swój prestiż w ręce ekspertów. Skontaktuj się z nami w celu uzyskania elitarnej konsultacji logistycznej." }
+                    { title: "Skontaktuj się z nami", subtitle: "PLANUJEMY TWOJĄ PODRÓŻ", content: "Powierz swój prestiż w ręce ekspertów. Skontaktuj się con nami w celu uzyskania elitarnej konsultacji logistycznej." }
                 ]
             },
             DE: {
@@ -145,7 +154,7 @@
                     { title: "Exzellenz in Bewegung", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division ist die beste Garantie für Ihren Transport: schnelle Zeiten, komplettes Management, garantiertes Ergebnis." },
                     { title: "Unsere Vision", subtitle: "HÜTER DER SCHÖNHEIT", content: "Italienisches Design ist ein Kunstwerk. Es verdient eine makellose Reise. TCT24 garantiert absolute Perfektion." },
                     { title: "Transport vs. Schutz", subtitle: "EXZELLENZ IM DETAIL", content: "Wir fahren erst los, wenn die Ladung zu 100 % gesichert ist. Jeder Gurt, jeder Schutz, jeder Millimeter ist auf die Integrität des uns anvertrauten Wertes berechnet.", labels: ["ZUSTAND BEI ÜBERNAHME", "TCT24 METHODE"] },
-                    { title: "Korfu: Fallstudie", subtitle: "SCHLÜSSELFERTIGER SERVICE", content: "Wir verwalten jede Phase mit Präzision: Lieferung, technische Entladung, präzise Positionierung, Auspacken und vollständige Entsorgung der Verpackungen.", labels: ["Liebe zum Detail", "Endplatzierung"] },
+                    { title: "Korfu: Fallstudie", subtitle: "SCHLÜSSELFERTIGER SERVICE", content: "Wir verwalten jede Phase mit Präzision: Lieferung, technische Entladung, präzise Positionierung, Auspacken und Entsorgung der Verpackungen. Ein engagierter Service für Ihre Sicherheit.", labels: ["Liebe zum Detail", "Endplatzierung"] },
                     { title: "Grenzenlos in Europa", subtitle: "UK • SCHWEIZ • TÜRKEI", content: "London, Zürich, Istanbul: Wir verwandeln Zollbarrieren in fließende Übergänge. Wir kümmern uns um alle Formalitäten von A bis Z für einen stressfreien Transport." },
                     { title: "Technik & Sicherheit", subtitle: "RUNDUMSCHUTZ", content: "Wir wickeln jede Sendung nach höchsten Standards ab: maßgeschneiderter All-Risk-Versicherungsschutz und ständige Reiseüberwachung.",
                         features: [{ title: "All-Risk-Versicherung", desc: "Vollständige Deckung." }, { title: "Echtzeit-Tracking", desc: "Ständige Überwachung." }, { title: "Ladebordwand", desc: "Einfaches Entladen." }]
@@ -157,28 +166,28 @@
                 nav: { call: "Appeler", division: "Luxury Division" },
                 slides: [
                     { title: "L'excellence en mouvement", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division est la meilleure garantie pour votre transport : délais courts, gestion complète, résultat assuré." },
-                    { title: "Notre vision", subtitle: "GARDIENS DE LA BEAUTÉ", content: "Le design italien est une œuvre d'art. Il mérite un voyage impeccable. TCT24 Luxury Division garantit la perfection." },
-                    { title: "Transporter vs protéger", subtitle: "L'EXCELLENCE DANS LES DÉTAILS", content: "Nous ne partons que si la marchandise est sécurisée à 100%. Ogni sangle, ogni protection, ogni millimètre est calculé pour l'intégrité de la valeur che nous est confiée.", labels: ["ÉTAT RÉCEPTION CHARGEMENT", "MÉTHODE TCT24 LUXURY"] },
-                    { title: "Corfou : étude de cas", subtitle: "SERVICE CLÉS EN MAIN", content: "Nous gérons ogni étape avec précision : livraison, déchargement technique, positionnement, déballage et élimination complète des emballages.", labels: ["Soin du détail", "Placement final"] },
-                    { title: "Sans frontières en Europe", subtitle: "UK • SUISSE • TURQUIE", content: "Londres, Zurich, Istanbul : nous transformons le barrières douanières en passages fluides. Nous gérons ogni complexité bureaucratique de A à Z pour un voyage senza stress.", labels: ["Soin du détail", "Placement final"] },
-                    { title: "Technologie et sécurité", subtitle: "PROTECTION TOTALE", content: "Nous gérons ogni expédition selon les normes les plus élevées : couverture d'assurance sur mesure et suivi constant du viaggio.",
-                        features: [{ title: "Assurance All-Risk", desc: "Couverture totale." }, { title: "Suivi en temps réel", desc: "Position toujours visible." }, { title: "Hayon élévateur", desc: "Déchargement facilité." }]
+                    { title: "Notre vision", subtitle: "GARDIENS DE LA BEAUTÉ", content: "Le design italien est una opera d'arte. Il mérite un voyage impeccabile. TCT24 Luxury Division garantit la perfection." },
+                    { title: "Transporter vs protéger", subtitle: "L'EXCELLENCE DANS LES DÉTAILS", content: "Nous ne partons che si la marchandise est sécurisée à 100%. Ogni sangle, ogni protection, ogni millimètre est calculé pour l'intégrité de la valore qui nous est confiée.", labels: ["ÉTAT RÉCEPTION CHARGEMENT", "MÉTHODE TCT24 LUXURY"] },
+                    { title: "Corfou : étude de cas", subtitle: "SERVICE CLÉS EN MAIN", content: "Nous gérons ogni étape con precision : livraison, déchargement technique, positionnement, déballage et élimination complète des emballages.", labels: ["Soin du dettaglio", "Placement final"] },
+                    { title: "Sans frontières en Europa", subtitle: "UK • SUISSE • TURQUIE", content: "Londres, Zurich, Istanbul : nous transformons le barrières douanières en passages fluides. Nous gérons ogni complexité bureaucratique de A à Z, garantissant un transport international sans escale et senza stress." },
+                    { title: "Technologie et sécurité", subtitle: "PROTECTION TOTALE", content: "Nous gérons ogni expédition secondo le normes les plus élevées : couverture d'assurance sur misura et suivi constant du voyage.",
+                        features: [{ title: "Assurance All-Risk", desc: "Couverture totale." }, { title: "Suivi en tempo réel", desc: "Traçage constant per conoscere sempre la posizione del carico." }, { title: "Hayon élévateur", desc: "Chargement et déchargement facilités." }]
                     },
-                    { title: "Contactez-nous", subtitle: "PLANIFIONS VOTRE VOYAGE", content: "Confiez votre prestige à des mains expertes. Contactez-nous pour un conseil logistique d'élite." }
+                    { title: "Contactez-nous", subtitle: "PLANIFIONS VOTRE VOYAGE", content: "Confiez votre prestige à des mains expertes. Contactez-nous pour un consiglio logistica d'élite." }
                 ]
             },
             ES: {
                 nav: { call: "Llamar", division: "Luxury Division" },
                 slides: [
                     { title: "La excelencia en movimiento", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division es la mejor garantía para su transporte: tiempos rápidos, gestión completa, resultado asegurado." },
-                    { title: "Nuestra visión", subtitle: "CUSTODIOS DE LA BELLEZA", content: "El diseño italiano es una obra de arte. Merece un viaje impecable. TCT24 Luxury Division garantiza que cada pieza llegue a su destino exactamente como fue concebida: perfecta." },
-                    { title: "Transportar vs proteger", subtitle: "LA EXCELENCIA EN LOS DETALLES", content: "Partimos solo si la mercancía está segura al 100%. Cada correa, cada protección, cada milímetro están calculados para la integridad del valor que se nos confía.", labels: ["ESTADO RECEPCIÓN CARGA", "MÉTODO TCT24 LUXURY"] },
-                    { title: "Corfú: caso de estudio", subtitle: "SERVICIO LLAVE EN MANO", content: "Gestionamos cada fase con precisión: entrega, descarga técnica, posicionamiento, desembalaje y eliminación completa de embalajes. Un servicio dedicado para su seguridad total.", labels: ["Cuidado del detalle", "Colocación final"] },
-                    { title: "Sin fronteras en Europa", subtitle: "UK • SUIZA • TURQUÍA", content: "Londres, Zúrich, Estambul: transformamos las barreras aduaneras en pasos fluidos. Gestionamos cada complejidad burocrática de la A a la Z, garantizando un transporte sin estrés." },
-                    { title: "Tecnología y seguridad", subtitle: "PROTECCIÓN TOTAL", content: "Gestionamos cada envío con los más altos estándares del mercado, coberturas de seguro a medida y seguimiento constante del viaje.",
-                        features: [{ title: "Seguro All-Risk", desc: "Cobertura total del valor." }, { title: "Seguimiento en tiempo real", desc: "Rastreo constante en todo momento." }, { title: "Plataforma elevadora", desc: "Carga y descarga facilitada." }]
+                    { title: "Nuestra visión", subtitle: "CUSTODIOS DE LA BELLEZA", content: "El sistema de design italiano è una opera de arte. Merita un viaggio impeccabile. TCT24 Luxury Division garantisce che ogni pezzo arrivi a destinazione esattamente come è stato concepito: perfetto." },
+                    { title: "Transportar vs proteger", subtitle: "LA EXCELENCIA EN LOS DETALLES", content: "Solo salimos si la mercancía está segura al 100%. Cada correa, cada protezione, cada milímetro está calculado para la integridad del valore che se ci viene affidato.", labels: ["ESTADO RECEPCIÓN CARGA", "MÉTODO TCT24 LUXURY"] },
+                    { title: "Corfú: caso de estudio", subtitle: "SERVICIO LLAVE EN MANO", content: "Gestionamos cada fase con precision: consegna, descarga, posizionamento, desembalaje e eliminación completa de los embalajes. Un servicio dedicato, pensato per offrirti sicurezza totale e zero preoccupazioni.", labels: ["Cuidado del dettaglio", "Colocación final"] },
+                    { title: "Sin fronteras en Europa", subtitle: "UK • SUIZA • TURQUÍA", content: "Londres, Zúrich, Estambul: trasformiamo le barriere doganali in passaggi fluidi. Gestiamo ogni complessità burocratica dalla A alla Z, garantendo un trasporto internazionale senza soste e senza stress." },
+                    { title: "Tecnología y seguridad", subtitle: "PROTECCIÓN TOTAL", content: "Gestionamos ogni spedizione con i più alti standard di mercato, coperture assicurative su misura e monitoraggio costante del viaggio.",
+                        features: [{ title: "Seguro All-Risk", desc: "Cobertura total del valor." }, { title: "Seguimiento en tempo real", desc: "Rastreo constante per conoscere sempre la posizione del carico." }, { title: "Plataforma elevadora", desc: "Carico e scarico agevolato." }]
                     },
-                    { title: "Contáctenos", subtitle: "PLANIFICAMOS SU VIAJE", content: "Confíe su prestigio a manos expertas. Contáctenos para una consultoría logística de élite." }
+                    { title: "Contáctenos", subtitle: "PLANIFICAMOS SU VIAJE", content: "Affida il tuo prestigio a mani esperte. Contattaci per una consulenza logistica d'elite." }
                 ]
             }
         };
@@ -189,20 +198,21 @@
                     const browserLang = (navigator.language || navigator.userLanguage).split('-')[0].toUpperCase();
                     const supported = ['IT', 'PL', 'EN', 'DE', 'FR', 'ES'];
                     return supported.includes(browserLang) ? browserLang : 'IT';
-                } catch (e) {
-                    return 'IT';
-                }
+                } catch (e) { return 'IT'; }
             };
 
             const [currentSlide, setCurrentSlide] = useState(0);
             const [lang, setLang] = useState(getInitialLanguage());
             const [isLangOpen, setIsLangOpen] = useState(false);
+            const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
             
+            // Logica Slider Slide 1
             const [heroIndex, setHeroIndex] = useState(0);
             const [heroProgress, setHeroProgress] = useState(0);
             const [heroIsClearing, setHeroIsClearing] = useState(false);
             const heroImages = ["ztl.jpg", "ztl2.jpg", "ztl3.jpg"]; 
 
+            // Logica Slider Slide 5
             const [netIndex, setNetIndex] = useState(0);
             const [netProgress, setNetProgress] = useState(0);
             const [netIsClearing, setNetIsClearing] = useState(false);
@@ -213,12 +223,9 @@
             const minSwipeDistance = 50;
 
             const languages = [
-                { code: 'IT', label: 'Italiano' },
-                { code: 'PL', label: 'Polski' },
-                { code: 'EN', label: 'English' },
-                { code: 'DE', label: 'Deutsch' },
-                { code: 'FR', label: 'Français' },
-                { code: 'ES', label: 'Español' }
+                { code: 'IT', label: 'Italiano' }, { code: 'PL', label: 'Polski' },
+                { code: 'EN', label: 'English' }, { code: 'DE', label: 'Deutsch' },
+                { code: 'FR', label: 'Français' }, { code: 'ES', label: 'Español' }
             ];
 
             const slidesContent = [
@@ -233,6 +240,13 @@
 
             const next = () => setCurrentSlide((prev) => (prev + 1) % slidesContent.length);
             const prev = () => setCurrentSlide((prev) => (prev - 1 + slidesContent.length) % slidesContent.length);
+
+            // Parallasse dinamico al movimento del mouse
+            const handleMouseMove = (e) => {
+                const x = (e.clientX / window.innerWidth) - 0.5;
+                const y = (e.clientY / window.innerHeight) - 0.5;
+                setMousePos({ x, y });
+            };
 
             useEffect(() => {
                 const handleKeyDown = (e) => {
@@ -282,8 +296,7 @@
                 if (touchStartX.current === null) return;
                 const distance = touchStartX.current - clientX;
                 if (Math.abs(distance) > minSwipeDistance) {
-                    if (distance > 0) next();
-                    else prev();
+                    if (distance > 0) next(); else prev();
                 }
                 touchStartX.current = null;
             };
@@ -294,6 +307,7 @@
             return (
                 <div 
                     className={`min-h-screen flex flex-col transition-colors duration-500 ${slideData.bg}`}
+                    onMouseMove={handleMouseMove}
                     onTouchStart={(e) => handleStart(e.targetTouches[0].clientX)}
                     onTouchEnd={(e) => handleEnd(e.changedTouches[0].clientX)}
                     onMouseDown={(e) => handleStart(e.clientX)}
@@ -352,7 +366,10 @@
 
                     <main className="flex-1 relative flex flex-col justify-center overflow-hidden" onClick={() => setIsLangOpen(false)}>
                         {slideData.isHero ? (
-                            <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                            <div 
+                                className="absolute inset-0 z-0 overflow-hidden pointer-events-none"
+                                style={{ transform: `translate(${mousePos.x * -20}px, ${mousePos.y * -20}px)` }}
+                            >
                                 {slideData.id === "copertina" ? (
                                     heroImages.map((img, idx) => (
                                         <img key={idx} src={img} alt="Hero" className={`absolute inset-0 w-full h-full object-cover animate-ken-burns transition-opacity duration-1000 ${heroIndex === idx ? 'opacity-100' : 'opacity-0'}`} />
@@ -372,22 +389,28 @@
                             </div>
                         ) : null}
 
-                        <div className="relative z-10 max-w-7xl mx-auto w-full p-6 md:p-12 slide-enter pointer-events-none">
+                        <div 
+                            className="relative z-10 max-w-7xl mx-auto w-full p-6 md:p-12 slide-enter pointer-events-none main-content-transition"
+                            key={currentSlide}
+                        >
                             <div className={`grid grid-cols-1 ${slideData.isHero ? 'lg:w-1/2' : 'lg:grid-cols-2'} gap-12 items-center`}>
-                                <div className="space-y-6 pointer-events-auto">
-                                    <div className={`w-16 border-t-4 ${isDark ? 'border-gold' : 'border-slate-300'}`}></div>
-                                    <h2 className={`text-xs tracking-[0.4em] font-black uppercase ${isDark ? 'text-gold' : 'text-slate-400'}`}>
+                                <div 
+                                    className="space-y-6 pointer-events-auto"
+                                    style={{ transform: `translate(${mousePos.x * 25}px, ${mousePos.y * 25}px)` }}
+                                >
+                                    <div className={`w-16 border-t-4 parallax-layer-1 ${isDark ? 'border-gold' : 'border-slate-300'}`}></div>
+                                    <h2 className={`text-xs tracking-[0.4em] font-black uppercase parallax-layer-1 ${isDark ? 'text-gold' : 'text-slate-400'}`}>
                                         {slideText.subtitle}
                                     </h2>
-                                    <h1 className={`text-4xl md:text-7xl font-serif leading-tight ${slideData.textColor || 'text-white'}`}>
+                                    <h1 className={`text-4xl md:text-7xl font-serif leading-tight parallax-layer-2 ${slideData.textColor || 'text-white'}`}>
                                         {slideText.title}
                                     </h1>
-                                    <p className={`text-lg md:text-2xl font-light leading-relaxed italic ${slideData.textColor || 'text-slate-300'}`}>
+                                    <p className={`text-lg md:text-2xl font-light leading-relaxed italic parallax-layer-3 ${slideData.textColor || 'text-slate-300'}`}>
                                         {slideText.content}
                                     </p>
 
                                     {slideText.features && (
-                                        <div className="grid grid-cols-1 gap-6 mt-8">
+                                        <div className="grid grid-cols-1 gap-6 mt-8 parallax-layer-3">
                                             {slideText.features.map((f, i) => (
                                                 <div key={i} className="flex items-start gap-4 group">
                                                     <div className={`p-3 rounded-full transition-transform group-hover:scale-110 ${isDark ? 'bg-gold/10 text-gold' : 'bg-slate-100 text-slate-600'}`}>
@@ -403,7 +426,7 @@
                                     )}
 
                                     {slideData.isCTA && (
-                                        <div className="pt-8 space-y-6">
+                                        <div className="pt-8 space-y-6 parallax-layer-3">
                                             <div className="space-y-4">
                                                 <a href={`mailto:${slideData.email}`} className="flex items-center gap-4 text-white contact-link w-fit group">
                                                     <div className="p-3 bg-gold/10 rounded-full group-hover:bg-gold/20 transition-all">
@@ -423,15 +446,18 @@
                                 </div>
 
                                 {!slideData.isHero && (
-                                    <div className="relative pointer-events-auto flex justify-center lg:justify-end">
+                                    <div 
+                                        className="relative pointer-events-auto flex justify-center lg:justify-end"
+                                        style={{ transform: `translate(${mousePos.x * -15}px, ${mousePos.y * -15}px)` }}
+                                    >
                                         {slideData.isCTA ? (
-                                            <div className="w-32 h-32 md:w-44 md:h-44 flex items-center justify-center opacity-90 hover:opacity-100 transition-opacity">
-                                                <img src={slideData.qr} alt="Scan for Contacts" className="w-full h-full object-contain filter drop-shadow-lg" />
+                                            <div className="w-32 h-32 md:w-44 md:h-44 flex items-center justify-center opacity-90 hover:opacity-100 transition-opacity parallax-layer-2">
+                                                <img src={slideData.qr} alt="Scan for Contacts" className="w-full h-full object-contain filter drop-shadow-2xl" />
                                             </div>
                                         ) : slideData.isComparison ? (
                                             <div className="flex flex-col gap-4 w-full">
                                                 {slideData.images.map((img, idx) => (
-                                                    <div key={idx} className={`relative rounded-lg overflow-hidden shadow-xl border border-white/10 img-zoom-container cursor-pointer ${idx === 1 ? 'md:-translate-x-8 border-2 border-gold shadow-2xl' : ''}`}>
+                                                    <div key={idx} className={`relative rounded-lg overflow-hidden shadow-xl border border-white/10 img-zoom-container cursor-pointer parallax-layer-${idx+1} ${idx === 1 ? 'md:-translate-x-8 border-2 border-gold shadow-2xl' : ''}`}>
                                                         <img src={img} alt="Detail" className="w-full h-48 md:h-64 object-cover" />
                                                         <div className={`absolute top-4 left-4 text-white text-[9px] font-bold px-3 py-1 rounded-full uppercase tracking-widest ${idx === 1 ? 'bg-gold' : 'bg-black/70'}`}>
                                                             {slideText.labels[idx]}
@@ -440,7 +466,7 @@
                                                 ))}
                                             </div>
                                         ) : slideData.image ? (
-                                            <div className="rounded-xl overflow-hidden shadow-2xl border border-white/5 img-zoom-container cursor-pointer w-full">
+                                            <div className="rounded-xl overflow-hidden shadow-2xl border border-white/5 img-zoom-container cursor-pointer w-full parallax-layer-2">
                                                 <img src={slideData.image} alt="Visual" className="w-full h-64 md:h-[500px] object-cover" />
                                             </div>
                                         ) : null}
