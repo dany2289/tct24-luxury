@@ -139,6 +139,12 @@
 
         .img-zoom-container img { transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
 
+        .nav-contact-enter { animation: fadeInRight 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
         .main-content-transition { transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
 
         .parallax-bg-wrapper {
@@ -224,7 +230,7 @@
                     { title: "Technologia i sicurezza", subtitle: "PEŁNA OCHRONA", content: "Stały nadzór i najwyższe standardy rynkowe.",
                         features: [{ title: "ALL-RISK", desc: "Gwarancja wartości." }, { title: "TRACKING W CZASIE RZECZYWISTYM", desc: "Stały nadzór." }, { title: "WINDA ZAŁADOWCZA", desc: "Rozładunek techniczny." }]
                     },
-                    { title: "Skontaktuj się z nami", subtitle: "PLANUJEMY TWOJĄ PODRÓŻ", content: "Powierz swój prestiż w ręce ekspertów." }
+                    { title: "Skontaktuj się con nami", subtitle: "PLANUJEMY TWOJĄ PODRÓŻ", content: "Powierz swój prestiż w ręce ekspertów." }
                 ]
             },
             DE: {
@@ -249,10 +255,10 @@
                     { title: "L'excellence à ogni étape", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division. La perfection arrive à destination. Toujours." },
                     { title: "La beauté mérite protection", subtitle: "NOTRE VISION", content: "Ogni création italienne voyage avec le soin qui lui appartient." },
                     { title: "Le voyage commence par la protezione", subtitle: "LE SOIN DU DÉTAIL", content: "Chaque pièce est préparée avec une attention absolue, car la beauté mérite le respect.", labels: ["RÉCEPTION", "MÉTHODE TCT24"] },
-                    { title: "Corfou :\nétude de cas", subtitle: "SERVICE CLÉS EN MAIN", content: "De la livraison au positionnement millimétré, chaque étape est gérée avec une précision absolue.", labels: ["Soin du détail", "Placement final"] },
+                    { title: "Corfou :\nétude de cas", subtitle: "SERVICE CLÉS EN MAIN", content: "Livraison, déchargement technique et positionnement millimétré. Un servizio dedicato per la votre totale sicurezza.", labels: ["Soin du détail", "Placement final"] },
                     { title: "Sans frontières\nen Europe", subtitle: "UK • SUISSE • TURQUIE", content: "Londres, Zurich, Paris. Nous gérons ogni complexité bureaucratique de A à Z. Logistique d'élite senza frontières.", labels: ["Routes internationales", "Précision géographique"] },
                     { title: "Technologie et sicurezza", subtitle: "PROTECTION TOTALE", content: "Suivi constant et les normes les plus élevées du marché.",
-                        features: [{ title: "ALL-RISK", desc: "Valeur garantie." }, { title: "SUIVI EN TEMPS RÉEL", desc: "Position visible." }, { title: "HAYON ÉLÉVATEUR", desc: "Déchargement tecnico." }]
+                        features: [{ title: "Assurance All-Risk", desc: "Valeur garantie." }, { title: "SUIVI EN TEMPS RÉEL", desc: "Position visible." }, { title: "HAYON ÉLÉVATEUR", desc: "Déchargement tecnico." }]
                     },
                     { title: "Contactez-nous", subtitle: "PLANIFIONS VOTRE VOYAGE", content: "Confiez votre prestige à des mains esperte." }
                 ]
@@ -264,7 +270,7 @@
                     { title: "Excelencia en cada paso", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division. La perfección llega a su destino. Siempre." },
                     { title: "La bellezza merita protezione", subtitle: "NUESTRA VISIÓN", content: "Ogni creación italiana viaja con el cuidado que le corresponde." },
                     { title: "El viaje comienza con la protección", subtitle: "CUIDADO EN LOS DETALLES", content: "Cada pieza se prepara con absoluta atención, perché la bellezza merita rispetto.", labels: ["RECEPCIÓN", "MÉTODO TCT24"] },
-                    { title: "Corfù:\ncaso de estudio", subtitle: "SERVICIO LLAVE EN MANO", content: "Desde la entrega hasta el posicionamiento millimétrico, cada fase se gestiona con absoluta precisión.", labels: ["Cuidado del detalle", "Colocación final"] },
+                    { title: "Corfù:\ncaso de estudio", subtitle: "SERVICIO LLAVE EN MANO", content: "Desde la entrega hasta el posicionamiento millimétrico, cada fase se gestiona con absoluta precisión.", labels: ["Cuidado del dettaglio", "Colocación final"] },
                     { title: "Sin fronteras\nen Europa", subtitle: "UK • SUIZA • TURQUÍA", content: "Londres, Zúrich, París. Gestionamos cada complejidad aduanera de la una a la Z. Logística de élite sin fronteras.", labels: ["Rutas internacionales", "Precisión geográfica"] },
                     { title: "Tecnología y sicurezza", subtitle: "PROTECCIÓN TOTAL", content: "Monitoreo costante e i più alti standard del mercato.",
                         features: [{ title: "ALL-RISK", desc: "Valor garantizado." }, { title: "SEGUIMIENTO EN TIEMPO REAL", desc: "Posición constante." }, { title: "PLATAFORMA ELEVADORA", desc: "Descarga técnica." }]
@@ -326,7 +332,7 @@
                 { id: "corfu", isComparison: true, images: ["tavolo-marmo.jpg", "merce-posizionata.jpg"], bg: "bg-ebonite" },
                 { id: "network", isHero: true, bg: "bg-ebonite" },
                 { id: "tecnologia", video: "7873326-hd_1920_1080_30fps.mp4", isHero: true, bg: "bg-ebonite", features: [ { icon: "ShieldCheck" }, { icon: "Globe" }, { icon: "Truck" } ] },
-                { id: "cta", isCTA: true, bg: "bg-ebonite", email: "info@tct24.it", phone: "+39 392 901 4511", qr: "qr-daniel.png" }
+                { id: "cta", isCTA: true, bg: "bg-ebonite", email: "info@tct24.it", phone: "+39 392 901 4511", qr: "qr-daniel.png", parentLogo: "bima-logo.svg" }
             ];
 
             useEffect(() => {
@@ -515,12 +521,18 @@
                                 {welcomeStage === 'loading' ? (
                                     <div className="w-full space-y-4">
                                         <div className="h-[1px] w-full bg-white/10 overflow-hidden relative">
-                                            <div className="h-full bg-gold transition-all duration-300 ease-out" style={{ width: `${loadingProgress}%` }}></div>
+                                            <div 
+                                                className="h-full bg-gold transition-all duration-300 ease-out"
+                                                style={{ width: `${loadingProgress}%` }}
+                                            ></div>
                                         </div>
                                         <p className="text-[10px] font-black tracking-[0.4em] uppercase text-white/70">{t.reveal.loading}</p>
                                     </div>
                                 ) : (
-                                    <button onClick={handleEnterExperience} className="group relative flex flex-col items-center gap-4 py-4 px-8 outline-none">
+                                    <button 
+                                        onClick={handleEnterExperience}
+                                        className="group relative flex flex-col items-center gap-4 py-4 px-8 outline-none"
+                                    >
                                         <div className="p-4 rounded-full border border-gold text-gold group-hover:bg-gold group-hover:text-ebonite transition-all duration-500 scale-110">
                                             <Icon name="Play" size={24} />
                                         </div>
@@ -635,7 +647,7 @@
                                     )}
 
                                     {slideData.isCTA && (
-                                        <div className="pt-12 space-y-6 parallax-layer-3">
+                                        <div className="pt-12 space-y-8 parallax-layer-3">
                                             <div className={`space-y-4 ${slideData.isCentered ? 'flex flex-col items-center' : ''}`}>
                                                 <a href={`mailto:${slideData.email}`} onClick={playClick} className="flex items-center gap-4 text-white contact-link w-fit group">
                                                     <div className="p-3 bg-gold/10 rounded-full group-hover:bg-gold/20 transition-all text-gold">
@@ -649,6 +661,12 @@
                                                     </div>
                                                     <span className="text-xl font-light tracking-wider">{slideData.phone}</span>
                                                 </a>
+                                            </div>
+
+                                            {/* LOGO CASA MADRE - AGGIORNATO */}
+                                            <div className={`flex flex-col items-center gap-4 pt-12 border-t border-white/5 ${slideData.isCentered ? 'mx-auto' : 'lg:items-start'}`}>
+                                                <span className="text-[10px] font-black tracking-[0.5em] uppercase text-white/30">Gruppo:</span>
+                                                <img src={slideData.parentLogo} alt="Logo BiMA24" className="h-6 md:h-8 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity" />
                                             </div>
                                         </div>
                                     )}
