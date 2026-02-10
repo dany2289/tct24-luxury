@@ -16,7 +16,7 @@
     <style>
         /* CURSORE PERSONALIZZATO - LOGICA CSS */
         @media (pointer: fine) {
-            body, a, button, [role="button"], .img-zoom-container { cursor: none !important; }
+            body, a, button, [role="button"] { cursor: none !important; }
             
             .custom-cursor {
                 width: 8px;
@@ -107,7 +107,7 @@
             background: radial-gradient(circle, rgba(15, 23, 42, 0.4) 0%, rgba(15, 23, 42, 0.9) 100%);
         }
         
-        .video-grain { filter: brightness(0.6) contrast(1.2) saturate(0.8); }
+        .video-grain { filter: brightness(0.6) contrast(1.1) saturate(0.9); }
 
         .lang-dropdown {
             background: rgba(15, 23, 42, 0.98);
@@ -116,7 +116,6 @@
         }
 
         .img-zoom-container img { transition: transform 1.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
-        .img-zoom-container:hover img { transform: scale(1.08); }
 
         .nav-contact-enter { animation: fadeInRight 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
         @keyframes fadeInRight {
@@ -203,7 +202,7 @@
                     { title: "Korfu: studium przypadku", subtitle: "USŁUGA POD KLUCZ", content: "Dostawa, rozładunek techniczny i precyzyjne ustawienie. Dedykowana usługa dla Twojego pełnego bezpieczeństwa.", labels: ["Dbałość o detale", "Ustawienie końcowe"] },
                     { title: "Bez granic w Europie", subtitle: "UK • SZWAJCARIA • TURCJA", content: "Londyn, Zurych, Paryż. Zarządzamy wszelkimi formalnościami celnymi od A do Z. Elitarna logistyka bez granic." },
                     { title: "Technologia i bezpieczeństwo", subtitle: "PEŁNA OCHRONA", content: "Stały nadzór i najwyższe standardy rynkowe.",
-                        features: [{ title: "Ubezpieczenie All-Risk", desc: "Gwarancja wartości." }, { title: "Tracking w czasie rzeczywistym", desc: "Stałe śledzenie ładunku." }, { title: "Winda załadowcza", desc: "Rozładunek techniczny." }]
+                        features: [{ title: "Ubezpieczenie All-Risk", desc: "Gwarancja wartości." }, { title: "Tracking w czasie rzeczywistym", desc: "Stały nadzór." }, { title: "Winda załadowcza", desc: "Rozładunek techniczny." }]
                     },
                     { title: "Skontaktuj się con nami", subtitle: "PLANUJEMY TWOJĄ PODRÓŻ", content: "Powierz swój prestiż w ręce ekspertów." }
                 ]
@@ -225,13 +224,13 @@
             FR: {
                 nav: { call: "Appeler", division: "Luxury Division" },
                 slides: [
-                    { title: "L'excellence en mouvement", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division garantit che chaque pièce arrive à destination exactement comme elle a été conçue : parfaite." },
-                    { title: "Gardiens de la beauté", subtitle: "NOTRE VISION", content: "Le design italien est una opera d'arte. Il mérite un voyage impeccabile." },
-                    { title: "Transporter vs protéger", subtitle: "L'EXCELLENCE DANS LES DÉTAILS", content: "Nous ne partons che si la marchandise est sécurisée à 100%. Ogni millimètre est calculé pour l'intégrité de la valore.", labels: ["RÉCEPTION", "MÉTHODE TCT24"] },
+                    { title: "L'excellence en movimento", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division garantit che chaque pièce arrive à destination esattamente come elle a été conçue : parfaite." },
+                    { title: "Gardiens de la beauté", subtitle: "NOTRE VISION", content: "Le design italiano est una opera d'arte. Il mérite un voyage impeccabile." },
+                    { title: "Transporter vs protéger", subtitle: "L'EXCELLENCE DANS LES DÉTAILS", content: "Nous ne partons che si la marchandise est sécurisée à 100%. Ogni sangle, ogni protection, ogni millimètre est calculé pour l'intégrité de la valore.", labels: ["RÉCEPTION", "MÉTHODE TCT24"] },
                     { title: "Corfou : étude de cas", subtitle: "SERVICE CLÉS EN MAIN", content: "Livraison, déchargement technique et positionnement millimétré. Un servizio dedicato per la vostra totale sicurezza.", labels: ["Soin du dettaglio", "Placement final"] },
                     { title: "Sans frontières", subtitle: "UK • SUISSE • TURQUIE", content: "Londres, Zurich, Paris. Nous gérons ogni complexité bureaucratique de A à Z. Logistique d'élite senza frontières." },
                     { title: "Technologie et sécurité", subtitle: "PROTECTION TOTALE", content: "Suivi constant et les normes les plus élevées du marché.",
-                        features: [{ title: "Assurance All-Risk", desc: "Couverture totale." }, { title: "Suivi en tempo réel", desc: "Position visible." }, { title: "Hayon élévateur", desc: "Déchargement tecnico." }]
+                        features: [{ title: "Assurance All-Risk", desc: "Valeur garantie." }, { title: "Suivi en tempo réel", desc: "Position visible." }, { title: "Hayon élévateur", desc: "Déchargement tecnico." }]
                     },
                     { title: "Contactez-nous", subtitle: "PLANIFIONS VOTRE VOYAGE", content: "Confiez votre prestige à des mains esperte." }
                 ]
@@ -244,7 +243,7 @@
                     { title: "Transportar vs proteger", subtitle: "LA EXCELENCIA EN LOS DETALLES", content: "Solo salimos si la mercancía está segura al 100%. Cada milímetro está calculado para la integridad di su valor.", labels: ["RECEPCIÓN", "MÉTODO TCT24"] },
                     { title: "Corfù: caso de estudio", subtitle: "SERVICIO LLAVE EN MANO", content: "Entrega, descarga técnica y posicionamiento milimétrico. Un servizio dedicato para su seguridad total.", labels: ["Cuidado del dettaglio", "Colocación final"] },
                     { title: "Sin fronteras", subtitle: "UK • SUIZA • TURQUÍA", content: "Londres, Zúrich, París. Gestionamos cada complejidad aduanera de la A a la Z. Logística de élite sin fronteras." },
-                    { title: "Tecnología y seguridad", subtitle: "PROTECCIÓN TOTAL", content: "Monitoreo costante e i più alti standard del mercato.",
+                    { title: "Tecnología y seguridad", subtitle: "PROTECCIÓN TOTAL", content: "Monitoreo constante e i più alti standard del mercato.",
                         features: [{ title: "Seguro All-Risk", desc: "Valor garantizado." }, { title: "Seguimiento en tiempo real", desc: "Posición constante." }, { title: "Plataforma elevadora", desc: "Descarga técnica." }]
                     },
                     { title: "Contáctenos", subtitle: "PLANIFICAMOS SU VIAJE", content: "Confíe su prestigio a manos expertas." }
@@ -294,12 +293,38 @@
             ];
 
             const slidesContent = [
-                { id: "copertina", isHero: true, bg: "bg-ebonite" },
-                { id: "visione", image: "italian-design.jpg", isHero: true, isCentered: true, bg: "bg-ebonite" },
+                // SLIDE 1: VIDEO CINEMATOGRAFICO CAMION (Segnaposto)
+                { 
+                    id: "copertina", 
+                    isHero: true, 
+                    bg: "bg-ebonite", 
+                    video: "https://player.vimeo.com/external/370331493.sd.mp4?s=340ed53297a38b15d2a6a60399ea4e760c497334&profile_id=164&oauth2_token_id=57447761" 
+                },
+                // SLIDE 2: VIDEO INTERNO DESIGN (Segnaposto)
+                { 
+                    id: "visione", 
+                    isHero: true, 
+                    isCentered: true, 
+                    bg: "bg-ebonite", 
+                    video: "https://player.vimeo.com/external/494252666.sd.mp4?s=98668c2278479e0a0d937042a99d21b79f8e434f&profile_id=164&oauth2_token_id=57447761" 
+                },
                 { id: "racconto", isComparison: true, images: ["carico-appena-caricato.jpg", "carico-sicuro.jpg"], bg: "bg-white", textColor: "text-slate-900" },
                 { id: "corfu", isComparison: true, images: ["tavolo-marmo.jpg", "merce-posizionata.jpg"], bg: "bg-ebonite" },
-                { id: "network", isHero: true, bg: "bg-ebonite" },
-                { id: "tecnologia", video: "7873326-hd_1920_1080_30fps.mp4", isHero: true, bg: "bg-ebonite", features: [ { icon: "ShieldCheck" }, { icon: "Globe" }, { icon: "Truck" } ] },
+                // SLIDE 5: VIDEO VIAGGIO / AUTOSTRADA (Segnaposto)
+                { 
+                    id: "network", 
+                    isHero: true, 
+                    bg: "bg-ebonite", 
+                    video: "https://player.vimeo.com/external/459389137.sd.mp4?s=964a66a1a153833d76378e907a991f42289694c9&profile_id=164&oauth2_token_id=57447761" 
+                },
+                // SLIDE 6: VIDEO TECNOLOGIA / DETTAGLI (Segnaposto)
+                { 
+                    id: "tecnologia", 
+                    video: "https://player.vimeo.com/external/496223528.sd.mp4?s=f5b3316e6807e366113b288a7c2937989eb20311&profile_id=164&oauth2_token_id=57447761", 
+                    isHero: true, 
+                    bg: "bg-ebonite", 
+                    features: [ { icon: "ShieldCheck" }, { icon: "Globe" }, { icon: "Truck" } ] 
+                },
                 { id: "cta", isCTA: true, bg: "bg-ebonite", email: "info@tct24.it", phone: "+39 392 901 4511", qr: "qr-daniel.png" }
             ];
 
@@ -372,7 +397,7 @@
             }, [currentSlide]);
 
             useEffect(() => {
-                if (currentSlide !== 0) { setHeroProgress(0); setHeroIsClearing(false); return; }
+                if (currentSlide !== 0 || slidesContent[0].video) { setHeroProgress(0); setHeroIsClearing(false); return; }
                 const timer = setInterval(() => {
                     setHeroProgress((prev) => {
                         if (prev >= 100) {
@@ -387,7 +412,7 @@
             }, [currentSlide, heroImages.length]);
 
             useEffect(() => {
-                if (currentSlide !== 4) { setNetProgress(0); setNetIsClearing(false); return; }
+                if (currentSlide !== 4 || slidesContent[4].video) { setNetProgress(0); setNetIsClearing(false); return; }
                 const timer = setInterval(() => {
                     setNetProgress((prev) => {
                         if (prev >= 100) {
@@ -426,7 +451,7 @@
                     onMouseDown={(e) => handleStart(e.clientX)}
                     onMouseUp={(e) => handleEnd(e.clientX)}
                 >
-                    {/* AUDIO ELEMENT AGGIORNATO CON FILE FREE PIXABAY */}
+                    {/* AUDIO ELEMENT */}
                     <audio ref={audioRef} src="sigmamusicart-inspiring-inspirational-music-442016.mp3" loop preLoad="auto" />
 
                     {/* ELEMENTI CURSORE */}
@@ -479,7 +504,7 @@
                             )}
                         </div>
                         
-                        {(currentSlide === 0 || currentSlide === 4) && (
+                        {(currentSlide === 0 || currentSlide === 4) && !slideData.video && (
                             <div className="absolute bottom-0 left-0 h-[2px] bg-gold/10 w-full z-50 overflow-hidden">
                                 <div 
                                     className="h-full bg-gold transition-all duration-75 ease-linear"
@@ -498,19 +523,17 @@
                                 className="parallax-bg-wrapper pointer-events-none"
                                 style={{ transform: `translate(${mousePos.x * -20}px, ${mousePos.y * -20}px)` }}
                             >
-                                {slideData.id === "copertina" ? (
-                                    heroImages.map((img, idx) => (
-                                        <img key={idx} src={img} alt="Hero" className={`absolute inset-0 w-full h-full object-cover animate-ken-burns transition-opacity duration-1000 ${heroIndex === idx ? 'opacity-100' : 'opacity-0'}`} />
-                                    ))
-                                ) : slideData.id === "network" ? (
-                                    netImages.map((img, idx) => (
-                                        <img key={idx} src={img} alt="Network" className={`absolute inset-0 w-full h-full object-cover animate-ken-burns transition-opacity duration-1000 ${netIndex === idx ? 'opacity-100' : 'opacity-0'}`} />
-                                    ))
+                                {slideData.video ? (
+                                    <video src={slideData.video} autoPlay muted loop playsInline className="w-full h-full object-cover video-grain" />
                                 ) : (
-                                    slideData.video ? (
-                                        <video src={slideData.video} autoPlay muted loop playsInline className="w-full h-full object-cover video-grain animate-ken-burns" />
+                                    slideData.id === "copertina" ? (
+                                        heroImages.map((img, idx) => (
+                                            <img key={idx} src={img} alt="Hero" className={`absolute inset-0 w-full h-full object-cover animate-ken-burns transition-opacity duration-1000 ${heroIndex === idx ? 'opacity-100' : 'opacity-0'}`} />
+                                        ))
                                     ) : (
-                                        <img src={slideData.image} alt="Background" className="w-full h-full object-cover animate-ken-burns" />
+                                        netImages.map((img, idx) => (
+                                            <img key={idx} src={img} alt="Network" className={`absolute inset-0 w-full h-full object-cover animate-ken-burns transition-opacity duration-1000 ${netIndex === idx ? 'opacity-100' : 'opacity-0'}`} />
+                                        ))
                                     )
                                 )}
                                 <div className={`absolute inset-0 ${slideData.isCentered ? 'img-overlay-centered' : 'img-overlay'}`}></div>
