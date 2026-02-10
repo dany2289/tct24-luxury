@@ -28,6 +28,7 @@
                 z-index: 9999;
                 transform: translate(-50%, -50%);
                 transition: width 0.3s, height 0.3s, background-color 0.3s;
+                will-change: left, top;
             }
 
             .custom-cursor-aura {
@@ -39,7 +40,8 @@
                 pointer-events: none;
                 z-index: 9998;
                 transform: translate(-50%, -50%);
-                transition: transform 0.15s ease-out, width 0.3s, height 0.3s, border 0.3s;
+                transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), width 0.3s, height 0.3s, border 0.3s;
+                will-change: left, top;
             }
 
             .cursor-hover .custom-cursor {
@@ -63,9 +65,23 @@
         .border-gold { border-color: #D4AF37; }
         .bg-gold { background-color: #D4AF37; }
         
-        .parallax-layer-1 { animation: driftIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
-        .parallax-layer-2 { animation: driftIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; opacity: 0; animation-delay: 0.1s; }
-        .parallax-layer-3 { animation: driftIn 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; opacity: 0; animation-delay: 0.2s; }
+        /* Animazioni di entrata e parallasse con smoothing */
+        .parallax-layer-1 { 
+            animation: driftIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .parallax-layer-2 { 
+            animation: driftIn 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; 
+            opacity: 0; 
+            animation-delay: 0.1s;
+            transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .parallax-layer-3 { 
+            animation: driftIn 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; 
+            opacity: 0; 
+            animation-delay: 0.2s;
+            transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
 
         @keyframes driftIn {
             from { opacity: 0; transform: translateX(30px) translateY(10px); }
@@ -76,8 +92,8 @@
             animation: kenburns 30s ease-in-out infinite alternate;
         }
         @keyframes kenburns {
-            0% { transform: scale(1) translate(0, 0); }
-            100% { transform: scale(1.15) translate(-1%, -1%); }
+            0% { transform: scale(1.1) translate(0, 0); }
+            100% { transform: scale(1.25) translate(-1%, -1%); }
         }
 
         ::-webkit-scrollbar { width: 6px; }
@@ -110,6 +126,16 @@
         }
 
         .main-content-transition { transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+
+        /* Fix per i bordi dello sfondo durante il parallasse */
+        .parallax-bg-wrapper {
+            position: absolute;
+            inset: -5%; /* Espande il contenitore oltre i bordi */
+            width: 110%;
+            height: 110%;
+            overflow: hidden;
+            transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
     </style>
 </head>
 <body class="bg-ebonite">
@@ -177,7 +203,7 @@
                     { title: "Korfu: studium przypadku", subtitle: "USŁUGA POD KLUCZ", content: "Dostawa, rozładunek techniczny i precyzyjne ustawienie. Dedykowana usługa dla Twojego pełnego bezpieczeństwa.", labels: ["Dbałość o detale", "Ustawienie końcowe"] },
                     { title: "Bez granic w Europie", subtitle: "UK • SZWAJCARIA • TURCJA", content: "Londyn, Zurych, Paryż. Zarządzamy wszelkimi formalnościami celnymi od A do Z. Elitarna logistyka bez granic." },
                     { title: "Technologia i bezpieczeństwo", subtitle: "PEŁNA OCHRONA", content: "Stały nadzór i najwyższe standardy rynkowe.",
-                        features: [{ title: "Ubezpieczenie All-Risk", desc: "Gwarancja wartości." }, { title: "Tracking w czasie rzeczywistym", desc: "Stały nadzór." }, { title: "Winda załadowcza", desc: "Rozładunek techniczny." }]
+                        features: [{ title: "Ubezpieczenie All-Risk", desc: "Gwarancja wartości." }, { title: "Tracking w czasie rzeczywistym", desc: "Stałe śledzenie ładunku." }, { title: "Winda załadowcza", desc: "Rozładunek techniczny." }]
                     },
                     { title: "Skontaktuj się z nami", subtitle: "PLANUJEMY TWOJĄ PODRÓŻ", content: "Powierz swój prestiż w ręce ekspertów." }
                 ]
@@ -216,7 +242,7 @@
                     { title: "La excelencia en movimiento", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division garantiza que cada pieza llegue a su destino exactamente como fue concebida: perfecta." },
                     { title: "Guardianes de la bellezza", subtitle: "NUESTRA VISIÓN", content: "El diseño italiano es una obra de arte. Merece un viaje impecable." },
                     { title: "Transportar vs proteger", subtitle: "LA EXCELENCIA EN LOS DETALLES", content: "Solo salimos si la mercancía está segura al 100%. Cada milímetro está calculado para la integridad de su valor.", labels: ["RECEPCIÓN", "MÉTODO TCT24"] },
-                    { title: "Corfù: caso de estudio", subtitle: "SERVICIO LLAVE EN MANO", content: "Entrega, descarga técnica y posicionamiento milimétrico. Un servicio dedicado para su seguridad total.", labels: ["Cuidado del dettaglio", "Colocación final"] },
+                    { title: "Corfù: caso de estudio", subtitle: "SERVICIO LLAVE EN MANO", content: "Entrega, descarga técnica y posicionamiento milimétrico. Un servicio dedicato para su seguridad total.", labels: ["Cuidado del dettaglio", "Colocación final"] },
                     { title: "Sin fronteras", subtitle: "UK • SUIZA • TURQUÍA", content: "Londres, Zúrich, París. Gestionamos cada complejidad aduanera de la A a la Z. Logística de élite sin fronteras." },
                     { title: "Tecnología y seguridad", subtitle: "PROTECCIÓN TOTAL", content: "Monitoreo constante y los más altos estándares del mercado.",
                         features: [{ title: "Seguro All-Risk", desc: "Valor garantizado." }, { title: "Seguimiento en tiempo real", desc: "Posición constante." }, { title: "Plataforma elevadora", desc: "Descarga técnica." }]
@@ -241,7 +267,6 @@
             const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
             const [isHoveringInteractions, setIsHoveringInteractions] = useState(false);
             
-            // Per il cursore scia (Aura)
             const auraRef = useRef(null);
             const cursorRef = useRef(null);
 
@@ -279,12 +304,10 @@
             const next = () => setCurrentSlide((prev) => (prev + 1) % slidesContent.length);
             const prev = () => setCurrentSlide((prev) => (prev - 1 + slidesContent.length) % slidesContent.length);
 
-            // LOGICA CURSORE E PARALLASSE
             const handleGlobalMouseMove = (e) => {
                 const x = e.clientX;
                 const y = e.clientY;
 
-                // Sposta i div fisicamente per il cursore
                 if (cursorRef.current) {
                     cursorRef.current.style.left = `${x}px`;
                     cursorRef.current.style.top = `${y}px`;
@@ -294,12 +317,13 @@
                     auraRef.current.style.top = `${y}px`;
                 }
 
-                // Calcola parallasse per le slide
-                const px = (x / window.innerWidth) - 0.5;
-                const py = (y / window.innerHeight) - 0.5;
-                setMousePos({ x: px, y: py });
+                // Parallasse attivo solo se c'è un puntatore fine (mouse)
+                if (window.matchMedia('(pointer: fine)').matches) {
+                    const px = (x / window.innerWidth) - 0.5;
+                    const py = (y / window.innerHeight) - 0.5;
+                    setMousePos({ x: px, y: py });
+                }
 
-                // Check se siamo sopra un elemento interattivo
                 const target = e.target;
                 const isInteracting = target.closest('a') || target.closest('button') || target.closest('.img-zoom-container');
                 setIsHoveringInteractions(!!isInteracting);
@@ -432,7 +456,7 @@
                     <main className="flex-1 relative flex flex-col justify-center overflow-hidden" onClick={() => setIsLangOpen(false)}>
                         {slideData.isHero ? (
                             <div 
-                                className="absolute inset-0 z-0 overflow-hidden pointer-events-none"
+                                className="parallax-bg-wrapper pointer-events-none"
                                 style={{ transform: `translate(${mousePos.x * -20}px, ${mousePos.y * -20}px)` }}
                             >
                                 {slideData.id === "copertina" ? (
