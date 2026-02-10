@@ -203,7 +203,7 @@
                     { title: "Korfu: studium przypadku", subtitle: "USŁUGA POD KLUCZ", content: "Dostawa, rozładunek techniczny i precyzyjne ustawienie. Dedykowana usługa dla Twojego pełnego bezpieczeństwa.", labels: ["Dbałość o detale", "Ustawienie końcowe"] },
                     { title: "Bez granic w Europie", subtitle: "UK • SZWAJCARIA • TURCJA", content: "Londyn, Zurych, Paryż. Zarządzamy wszelkimi formalnościami celnymi od A do Z. Elitarna logistyka bez granic." },
                     { title: "Technologia i bezpieczeństwo", subtitle: "PEŁNA OCHRONA", content: "Stały nadzór i najwyższe standardy rynkowe.",
-                        features: [{ title: "Ubezpieczenie All-Risk", desc: "Gwarancja wartości." }, { title: "Tracking w czasie rzeczywistym", desc: "Stały nadzór." }, { title: "Winda załadowcza", desc: "Rozładunek techniczny." }]
+                        features: [{ title: "Ubezpieczenie All-Risk", desc: "Gwarancja wartości." }, { title: "Tracking w czasie rzeczywistym", desc: "Stałe śledzenie ładunku." }, { title: "Winda załadowcza", desc: "Rozładunek techniczny." }]
                     },
                     { title: "Skontaktuj się con nami", subtitle: "PLANUJEMY TWOJĄ PODRÓŻ", content: "Powierz swój prestiż w ręce ekspertów." }
                 ]
@@ -231,7 +231,7 @@
                     { title: "Corfou : étude de cas", subtitle: "SERVICE CLÉS EN MAIN", content: "Livraison, déchargement technique et positionnement millimétré. Un servizio dedicato per la vostra totale sicurezza.", labels: ["Soin du dettaglio", "Placement final"] },
                     { title: "Sans frontières", subtitle: "UK • SUISSE • TURQUIE", content: "Londres, Zurich, Paris. Nous gérons ogni complexité bureaucratique de A à Z. Logistique d'élite senza frontières." },
                     { title: "Technologie et sécurité", subtitle: "PROTECTION TOTALE", content: "Suivi constant et les normes les plus élevées du marché.",
-                        features: [{ title: "Assurance All-Risk", desc: "Valeur garantie." }, { title: "Suivi en tempo réel", desc: "Position visible." }, { title: "Hayon élévateur", desc: "Déchargement tecnico." }]
+                        features: [{ title: "Assurance All-Risk", desc: "Couverture totale." }, { title: "Suivi en tempo réel", desc: "Position visible." }, { title: "Hayon élévateur", desc: "Déchargement tecnico." }]
                     },
                     { title: "Contactez-nous", subtitle: "PLANIFIONS VOTRE VOYAGE", content: "Confiez votre prestige à des mains esperte." }
                 ]
@@ -242,9 +242,9 @@
                     { title: "La excelencia en movimiento", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division garantiza que cada pieza llegue a su destino exactamente como fue concebida: perfecta." },
                     { title: "Guardianes de la bellezza", subtitle: "NUESTRA VISIÓN", content: "El diseño italiano es una obra de arte. Merece un viaje impecable." },
                     { title: "Transportar vs proteger", subtitle: "LA EXCELENCIA EN LOS DETALLES", content: "Solo salimos si la mercancía está segura al 100%. Cada milímetro está calculado para la integridad di su valor.", labels: ["RECEPCIÓN", "MÉTODO TCT24"] },
-                    { title: "Corfù: caso de estudio", subtitle: "SERVICIO LLAVE EN MANO", content: "Entrega, descarga técnica y posicionamiento milimétrico. Un servicio dedicato para su seguridad total.", labels: ["Cuidado del dettaglio", "Colocación final"] },
+                    { title: "Corfù: caso de estudio", subtitle: "SERVICIO LLAVE EN MANO", content: "Entrega, descarga técnica y posicionamiento milimétrico. Un servizio dedicato para su seguridad total.", labels: ["Cuidado del dettaglio", "Colocación final"] },
                     { title: "Sin fronteras", subtitle: "UK • SUIZA • TURQUÍA", content: "Londres, Zúrich, París. Gestionamos cada complejidad aduanera de la A a la Z. Logística de élite sin fronteras." },
-                    { title: "Tecnología y seguridad", subtitle: "PROTECCIÓN TOTAL", content: "Monitoreo constante e i più alti standard del mercato.",
+                    { title: "Tecnología y seguridad", subtitle: "PROTECCIÓN TOTAL", content: "Monitoreo costante e i più alti standard del mercato.",
                         features: [{ title: "Seguro All-Risk", desc: "Valor garantizado." }, { title: "Seguimiento en tiempo real", desc: "Posición constante." }, { title: "Plataforma elevadora", desc: "Descarga técnica." }]
                     },
                     { title: "Contáctenos", subtitle: "PLANIFICAMOS SU VIAJE", content: "Confíe su prestigio a manos expertas." }
@@ -339,7 +339,6 @@
                 }
 
                 const target = e.target;
-                // LOGICA HOVER: Rimosso .img-zoom-container per non far espandere il cursore sulle foto
                 const isInteracting = target.closest('a') || target.closest('button');
                 setIsHoveringInteractions(!!isInteracting);
             };
@@ -347,7 +346,6 @@
             useEffect(() => {
                 window.addEventListener('mousemove', handleGlobalMouseMove);
                 
-                // AUDIO AUTO-START LOGIC
                 const startAudio = () => {
                     if (audioRef.current && isMuted) {
                         audioRef.current.play()
@@ -428,8 +426,8 @@
                     onMouseDown={(e) => handleStart(e.clientX)}
                     onMouseUp={(e) => handleEnd(e.clientX)}
                 >
-                    {/* AUDIO ELEMENT */}
-                    <audio ref={audioRef} src="random-symmetries.mp3" loop preLoad="auto" />
+                    {/* AUDIO ELEMENT AGGIORNATO CON FILE FREE PIXABAY */}
+                    <audio ref={audioRef} src="sigmamusicart-inspiring-inspirational-music-442016.mp3" loop preLoad="auto" />
 
                     {/* ELEMENTI CURSORE */}
                     <div ref={cursorRef} className="custom-cursor"></div>
@@ -443,7 +441,6 @@
                         </div>
 
                         <div className="flex items-center gap-3 md:gap-6">
-                            {/* MUSIC TOGGLE */}
                             <button 
                                 onClick={toggleMusic}
                                 className="text-white/70 hover:text-gold transition-colors p-2"
