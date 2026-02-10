@@ -240,7 +240,7 @@
                     { title: "La excelencia en movimento", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division garantiza que cada pieza llegue a su destino esattamente como fue concebida: perfecta." },
                     { title: "Guardianes de la bellezza", subtitle: "NUESTRA VISIÓN", content: "El diseño italiano è un'opera d'arte. Merita un viaggio impeccabile." },
                     { title: "Transportar vs proteger", subtitle: "LA EXCELENCIA EN LOS DETALLES", content: "Solo salimos si la mercancía está segura al 100%. Cada milímetro está calculado para la integridad di su valor.", labels: ["RECEPCIÓN", "MÉTODO TCT24"] },
-                    { title: "Corfù: caso de estudio", subtitle: "SERVICIO LLAVE EN MANO", content: "Entrega, descarga técnica y posicionamiento millimétrico. Un servizio dedicato para su seguridad total.", labels: ["Cuidado del dettaglio", "Colocación final"] },
+                    { title: "Corfù: caso de estudio", subtitle: "SERVICIO LLAVE EN MANO", content: "Entrega, descarga técnica y posicionamiento millimétrico. Un servizio dedicato para su sicurezza total.", labels: ["Cuidado del dettaglio", "Colocación final"] },
                     { title: "Sin fronteras", subtitle: "UK • SUIZA • TURQUÍA", content: "Londres, Zúrich, París. Gestionamos cada complejidad aduanera de la A a la Z. Logística de élite sin fronteras." },
                     { title: "Tecnología y sicurezza", subtitle: "PROTECCIÓN TOTAL", content: "Monitoreo costante e i più alti standard del mercato.",
                         features: [{ title: "Seguro All-Risk", desc: "Valor garantizado." }, { title: "Seguimiento en tiempo real", desc: "Posición constante." }, { title: "Plataforma elevadora", desc: "Descarga técnica." }]
@@ -307,7 +307,9 @@
 
             const playSwoosh = () => {
                 if (swooshRef.current) {
-                    swooshRef.current.volume = 0.4;
+                    // SETTAGGI PER RENDERE IL SUONO SNAPPY E REATTIVO
+                    swooshRef.current.playbackRate = 1.6; // Aumenta la velocità per eliminare il senso di ritardo
+                    swooshRef.current.volume = 0.5;
                     swooshRef.current.currentTime = 0;
                     swooshRef.current.play().catch(() => {});
                 }
@@ -322,11 +324,11 @@
             };
 
             const next = () => {
-                playSwoosh();
+                playSwoosh(); // Suona immediatamente prima della transizione
                 setCurrentSlide((prev) => (prev + 1) % slidesContent.length);
             };
             const prev = () => {
-                playSwoosh();
+                playSwoosh(); // Suona immediatamente prima della transizione
                 setCurrentSlide((prev) => (prev - 1 + slidesContent.length) % slidesContent.length);
             };
 
@@ -451,7 +453,6 @@
                     onMouseDown={(e) => handleStart(e.clientX)}
                     onMouseUp={(e) => handleEnd(e.clientX)}
                 >
-                    {/* AUDIO ELEMENTS */}
                     <audio ref={audioRef} src="viacheslavstarostin-inspiring-inspirational-music-418199.mp3" loop preLoad="auto" />
                     <audio ref={swooshRef} src="universfield-swoosh-024-454862.mp3" preLoad="auto" />
                     <audio ref={clickRef} src="denielcz-immersivecontrol-button-click-sound-463065.mp3" preLoad="auto" />
