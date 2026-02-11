@@ -263,7 +263,7 @@
                 slides: [
                     { title: "Excelencia en cada passo", subtitle: "TCT24 Srl • Luxury Division", content: "TCT24 Luxury Division. La perfección llega a su destino. Siempre." },
                     { title: "La bellezza merita protezione", subtitle: "NUESTRA VISIÓN", content: "Ogni creación italiana viaja con el cuidado que le corresponde." },
-                    { title: "El viaje comienza con la protección", subtitle: "CUIDADO EN LOS DETALLES", content: "Cada pieza se prepara con absoluta atención, perché la bellezza merita rispetto.", labels: ["RECEPCIÓN", "MÉTODO TCT24"] },
+                    { title: "El viaggio comienza con la protezione", subtitle: "CUIDADO EN LOS DETALLES", content: "Cada pieza se prepara con absoluta atención, perché la bellezza merita rispetto.", labels: ["RECEPCIÓN", "MÉTODO TCT24"] },
                     { title: "Corfù:\ncaso de estudio", subtitle: "SERVICIO LLAVE EN MANO", content: "Desde la entrega hasta el posicionamiento millimétrico, cada fase se gestiona con absoluta precisión.", labels: ["Cuidado del dettaglio", "Colocación final"] },
                     { title: "Sin fronteras\nen Europa", subtitle: "UK • SUIZA • TURQUÍA", content: "Londres, Zúrich, París. Gestionamos cada complejidad aduanera de la una a la Z. Logística de élite sin fronteras.", labels: ["Rutas internazionali", "Precisión geográfica"] },
                     { title: "Tecnología y sicurezza", subtitle: "PROTECCIÓN TOTAL", content: "Monitoreo costante e i più alti standard del mercato.",
@@ -502,7 +502,8 @@
                     }}
                 >
                     <audio ref={audioRef} src="viacheslavstarostin-inspiring-inspirational-music-418199.mp3" loop preLoad="auto" />
-                    <audio ref={swooshRef} src="universfield-swoosh-024-454862.mp3" preLoad="auto" />
+                    {/* NUOVO SUONO SWOOSH IMPOSTATO QUI */}
+                    <audio ref={swooshRef} src="musicholder-woosh-260275.mp3" preLoad="auto" />
                     <audio ref={clickRef} src="denielcz-immersivecontrol-button-click-sound-463065.mp3" preLoad="auto" />
 
                     <div ref={cursorRef} className="custom-cursor"></div>
@@ -660,7 +661,6 @@
                                                 </a>
                                             </div>
 
-                                            {/* LOGO CASA MADRE - AGGIORNATO */}
                                             <div className={`flex flex-col items-center gap-4 pt-12 border-t border-white/5 ${slideData.isCentered ? 'mx-auto' : 'lg:items-start'}`}>
                                                 <span className="text-[10px] font-black tracking-[0.5em] uppercase text-white/30">Gruppo:</span>
                                                 <img src={slideData.parentLogo} alt="Logo BiMA24" className="h-6 md:h-8 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity" />
